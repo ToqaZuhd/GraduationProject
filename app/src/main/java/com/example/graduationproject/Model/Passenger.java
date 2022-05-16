@@ -4,7 +4,6 @@ import com.example.graduationproject.Trip;
 
 public class Passenger {
     private int ID;
-    private String full_name;
     private String username;
     private String password;
     private String phoneNumber;
@@ -14,9 +13,8 @@ public class Passenger {
     public Passenger() {
     }
 
-    public Passenger(int ID, String full_name, String username, String password, String phoneNumber, int score, Trip trip) {
+    public Passenger(int ID, String username, String password, String phoneNumber, int score, Trip trip) {
         this.ID = ID;
-        this.full_name = full_name;
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
@@ -32,13 +30,6 @@ public class Passenger {
         this.ID = ID;
     }
 
-    public String getFull_name() {
-        return full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
 
     public String getUsername() {
         return username;

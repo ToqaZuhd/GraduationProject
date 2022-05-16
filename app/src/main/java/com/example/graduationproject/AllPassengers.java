@@ -119,7 +119,6 @@ public class AllPassengers  {
                     String[] info = array[i].split(",");
                     Passenger passenger = new Passenger();
                     passenger.setID(Integer.parseInt(info[0].trim()));
-                    passenger.setFull_name(info[1].trim());
                     passenger.setUsername(info[2].trim());
                     passenger.setPassword(info[3].trim());
                     passenger.setPhoneNumber(info[4].trim());

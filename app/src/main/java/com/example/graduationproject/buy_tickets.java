@@ -44,7 +44,7 @@ public class buy_tickets extends AppCompatActivity {
         total_cost = findViewById(R.id.total_cost);
 
 
-        passenger = new Passenger(12, "Salma Alsharif","Salma_AlSharif", "salma123", "0599837889", 300, new Trip());
+        passenger = new Passenger(12,"Salma_AlSharif", "salma123", "0599837889", 300, new Trip());
         score.setText(passenger.getScore() +"");
 
 
