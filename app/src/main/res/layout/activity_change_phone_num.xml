@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zumthor"
+    tools:context=".ChangePhoneNum">
+
+
+    <TextView
+        android:id="@+id/NewPhone"
+        android:layout_width="369dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="right"
+        android:text="رقم الهاتف الجديد"
+        android:textColor="@color/blue"
+        android:layout_marginLeft="10dp"
+        android:textSize="27dp"
+        android:textStyle="normal|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="369dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="right"
+        android:hint="رقم الهاتف الجديد"
+        android:textColor="@color/blue"
+        android:layout_marginLeft="10dp"
+        android:textSize="27dp"
+        android:textStyle="normal|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewPhone"/>
+
+    <Button
+        android:id="@+id/save_Button"
+        android:layout_width="210dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="@color/blue"
+        android:onClick="btnClkChange"
+        android:text="حفظ التعديل"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+</androidx.constraintlayout.widget.ConstraintLayout>

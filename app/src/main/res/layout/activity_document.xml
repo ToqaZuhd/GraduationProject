@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zumthor"
+    android:gravity="right"
+    android:orientation="vertical"
+    tools:context=".DocumentActivity">
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="الوثائق المطلوبة"
+        android:textColor="@color/navy_blue"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text=">> الهوية"
+        android:textColor="@color/navy_blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text=">> جواز السفر"
+        android:textColor="@color/navy_blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text=">> بطاقة الجسور"
+        android:textColor="@color/navy_blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text=">> فحص يثبت أنك سليم من فايروس كورونا (COVID-19) أو شهادة التطعيم"
+        android:textColor="@color/navy_blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</LinearLayout>

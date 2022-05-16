@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zumthor"
+    tools:context=".Setting">
+
+
+        <TextView
+            android:id="@+id/setting"
+            android:layout_width="369dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="right"
+            android:text="المعلومات الشخصية"
+            android:textColor="@color/blue"
+            android:layout_marginLeft="20dp"
+            android:textSize="27dp"
+            android:textStyle="normal|bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ListView
+        android:id="@+id/ListChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="10.0sp"
+        android:background="@color/zumthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting"></ListView>
+<!--    <TextView-->
+<!--        android:id="@+id/ChangeName"-->
+<!--        android:layout_width="369dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="75dp"-->
+<!--        android:fontFamily="sans-serif-condensed"-->
+<!--        android:gravity="right"-->
+<!--        android:text="  تغيير الاسم"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="27dp"-->
+<!--        android:textStyle="normal|bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="@color/white"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/ChangePass"-->
+<!--        android:layout_width="369dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:fontFamily="sans-serif-condensed"-->
+<!--        android:gravity="right"-->
+<!--        android:text="  تغيير كلمة المرور"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="27dp"-->
+<!--        android:textStyle="normal|bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ChangeName"-->
+<!--        android:background="@color/white"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/ChangePhone"-->
+<!--        android:layout_width="369dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:fontFamily="sans-serif-condensed"-->
+<!--        android:gravity="right"-->
+<!--        android:text="تغيير رقم الهاتف"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="27dp"-->
+<!--        android:textStyle="normal|bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ChangePass"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/ChangeID"-->
+<!--        android:layout_width="369dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:fontFamily="sans-serif-condensed"-->
+<!--        android:gravity="right"-->
+<!--        android:text="تغيير رقم الهوية"-->
+<!--        android:textColor="@color/blue"-->
+<!--        android:textSize="27dp"-->
+<!--        android:textStyle="normal|bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ChangePhone"/>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
