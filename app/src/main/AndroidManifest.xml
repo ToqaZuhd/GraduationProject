@@ -40,14 +40,10 @@
             android:exported="true" />
         <activity
             android:name=".aboutApp"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".reviewCardView" -->
-        <!-- android:exported="true" /> -->
+            android:exported="true" />
         <activity
             android:name=".Review"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".postCardView" -->
-        <!-- android:exported="true" /> -->
+            android:exported="true" />
         <activity
             android:name=".writePost"
             android:exported="true" />
@@ -64,6 +60,54 @@
         <activity
             android:name=".postNews"
             android:exported="true" />
+
+        <activity
+            android:name=".DocumentActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".WritePostEmployeeActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".DaysAndTimesOpeningPassengerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DaysAndTimesOpeningEmployeeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TripMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".chargePoints"
+            android:exported="true"/>
+        <activity
+            android:name=".cars"
+            android:exported="true"/>
+        <activity
+            android:name=".PostCar"
+            android:exported="true"/>
+        <activity
+            android:name=".tickets_information"
+            android:exported="true"/>
+        <activity
+            android:name=".buy_tickets"
+            android:exported="true"/>
         <activity
             android:name=".Logo"
             android:exported="true">

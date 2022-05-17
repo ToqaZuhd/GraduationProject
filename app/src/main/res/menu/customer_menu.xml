@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
     <group>
         <item
             android:id="@+id/aboutApp"
-            android:icon="@drawable/ic_baseline_help_outline_24"
-            android:title="عن التطبيق" />
+            android:title=""
+            app:actionLayout="@layout/designaboutapp"
+            />
     </group>
     <group>
         <item
             android:id="@+id/myTrips"
-            android:icon="@drawable/ic_baseline_directions_car_24"
-            android:title="رحلاتي" />
+            app:actionLayout="@layout/designtrips"
+            android:title="" />
     </group>
 
     <group>
         <item
             android:id="@+id/setting"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="الإعدادات" />
+            app:actionLayout="@layout/designsetting"
+            android:title="" />
     </group>
 
     <group>
         <item
             android:id="@+id/logOut"
-            android:icon="@drawable/ic_logout_24"
-            android:title="تسجيل الخروج" />
+            app:actionLayout="@layout/designlogout"
+
+            android:title="" />
     </group>
 
 
