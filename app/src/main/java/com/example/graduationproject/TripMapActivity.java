@@ -36,6 +36,8 @@ public class TripMapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_map);
 
+        getSupportActionBar().setTitle("خريطة الرحلة");
+
         jericoCircle = findViewById(R.id.jericoCircle);
         jewsCircle = findViewById(R.id.jewsCircle);
         MHCircle = findViewById(R.id.MHCircle);

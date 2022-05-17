@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><style name="HiddenTitleTheme" parent="@style/Theme.GraduationProject">
-    <item name="windowNoTitle">true</item>
-    <item name="windowActionBar">false</item>
-</style>
+<resources>
+    <style name="HiddenTitleTheme" parent="@style/Theme.GraduationProject">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">Try Now</style>
     <style name="fontstyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

@@ -1,10 +1,13 @@
 package com.example.graduationproject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -25,6 +28,8 @@ import java.util.List;
 
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +45,7 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class postNews extends AppCompatActivity {
+public class postNews extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     SharedPreferences preferences;
     private int userID;
@@ -51,18 +56,31 @@ public class postNews extends AppCompatActivity {
 
     List<Post> posts=new ArrayList<>();
 
-    //Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    NavigationView navigationView;
+
     CircleImageView imageView;
     String UserName,imageName;
 
+    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_news);
         preferences=getSharedPreferences("session",MODE_PRIVATE);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("نشر الأخبار");
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         userID=preferences.getInt("login",-1);
         recycler = findViewById(R.id.post_recycler);
@@ -188,7 +206,39 @@ public class postNews extends AppCompatActivity {
 
         queue.add(request);
 
-    }}
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.aboutApp_nav:
+                intent=new Intent(postNews.this, aboutApp.class);
+                startActivity(intent);
+                break;
+            case R.id.myTrips_nav:
+                intent=new Intent(postNews.this, MyTrips.class);
+                startActivity(intent);
+                break;
+            case R.id.setting_nav:
+                intent=new Intent(postNews.this, Setting.class);
+                startActivity(intent);
+                break;
+
+            case R.id.logOut_nav:
+                intent=new Intent(postNews.this, LogOut.class);
+                startActivity(intent);
+                break;
+
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+}
 //    List<Post> ListOfPost;
 //    RecyclerView recyclerView;
 //    TextView textView;

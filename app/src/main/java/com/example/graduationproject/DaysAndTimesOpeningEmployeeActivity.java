@@ -32,6 +32,8 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_and_times_opening_employee);
+        getSupportActionBar().setTitle("إضافة موعد أو معلومة");
+
         queue = Volley.newRequestQueue(this);
         getPosts();
     }

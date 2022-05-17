@@ -41,6 +41,8 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post_employee);
+        getSupportActionBar().setTitle("إضافة موعد أو معلومة");
+
         postDateEdt = findViewById(R.id.datePost);
         edtPost = findViewById(R.id.PostEmployeeEdt);
         Intent intent = getIntent();

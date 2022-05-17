@@ -14,7 +14,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void nextSceneOnClickBtn(View view) {
+
+
+    public void rentCarOnClickBtn(View view) {
+        Intent intent = new Intent(this, cars.class);
+        startActivity(intent);
+    }
+
+    public void buyTicketOnClickBtn(View view) {
+        Intent intent = new Intent(this, buy_tickets.class);
+        startActivity(intent);
+    }
+
+    public void neededInfoOnClickBtn(View view) {
+        Intent intent = new Intent(this, DocumentActivity.class);
+        startActivity(intent);
+    }
+
+    public void tripMapOnClickBtn(View view) {
         Intent intent = new Intent(this, TripMapActivity.class);
         startActivity(intent);
     }

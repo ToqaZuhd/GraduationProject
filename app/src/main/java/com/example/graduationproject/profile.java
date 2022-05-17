@@ -1,6 +1,11 @@
 package com.example.graduationproject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.graduationproject.Model.Post;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +46,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class profile extends AppCompatActivity {
+public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private RequestQueue queue;
     SharedPreferences preferences;
     private int userID;
@@ -52,11 +59,27 @@ public class profile extends AppCompatActivity {
     TextView edtScore;
     ImageButton imgButton;
 
+    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        //getSupportActionBar().setTitle("حسابي");
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حسابي");
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         imageView=findViewById(R.id.imageView);
@@ -231,4 +254,35 @@ public class profile extends AppCompatActivity {
         // a json object request.
         queue.add(request);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.aboutApp_nav:
+                intent=new Intent(profile.this, aboutApp.class);
+                startActivity(intent);
+                break;
+            case R.id.myTrips_nav:
+                intent=new Intent(profile.this, MyTrips.class);
+                startActivity(intent);
+                break;
+            case R.id.setting_nav:
+                intent=new Intent(profile.this, Setting.class);
+                startActivity(intent);
+                break;
+
+            case R.id.logOut_nav:
+                intent=new Intent(profile.this, LogOut.class);
+                startActivity(intent);
+                break;
+
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }

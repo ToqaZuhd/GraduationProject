@@ -5,28 +5,28 @@
     tools:showIn="navigation_view">
     <group>
         <item
-            android:id="@+id/aboutApp"
+            android:id="@+id/aboutApp_nav"
             android:title=""
             app:actionLayout="@layout/designaboutapp"
             />
     </group>
     <group>
         <item
-            android:id="@+id/myTrips"
+            android:id="@+id/myTrips_nav"
             app:actionLayout="@layout/designtrips"
             android:title="" />
     </group>
 
     <group>
         <item
-            android:id="@+id/setting"
+            android:id="@+id/setting_nav"
             app:actionLayout="@layout/designsetting"
             android:title="" />
     </group>
 
     <group>
         <item
-            android:id="@+id/logOut"
+            android:id="@+id/logOut_nav"
             app:actionLayout="@layout/designlogout"
 
             android:title="" />

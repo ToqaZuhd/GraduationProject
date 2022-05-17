@@ -30,6 +30,7 @@ public class DaysAndTimesOpeningPassengerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_and_times_opening_passenger);
+        getSupportActionBar().setTitle("أوقات فتح الجسر");
         queue = Volley.newRequestQueue(this);
         getPosts();
     }

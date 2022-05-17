@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/DELL/.gradle/caches/transforms-3/12306562e49e7f8c59ebb76e8ae7b438/transformed/jetified-play-services-cast-framework-12.0.1/res/layout/cast_expanded_controller_activity.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/drawable/visited.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_about_app.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_logo.xml" value="0.13072916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_my_trips.xml" value="0.134375" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_profile.xml" value="0.152" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_setting.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_trip_map.xml" value="0.1" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_write_post.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/nav_header.xml" value="0.13072916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/menu/customer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/zhdto/AndroidStudioProjects/graduationProject/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/Users/zhdto/AndroidStudioProjects/graduationProject/app/src/main/res/drawable/ic_baseline_help_outline_24.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/zhdto/AndroidStudioProjects/graduationProject/app/src/main/res/drawable/ic_logout_24.xml" value="0.15989583333333332" />
