@@ -6,14 +6,39 @@
         <entry key="..\:/Users/DELL/.gradle/caches/transforms-3/12306562e49e7f8c59ebb76e8ae7b438/transformed/jetified-play-services-cast-framework-12.0.1/res/layout/cast_expanded_controller_activity.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/drawable/visited.xml" value="0.1" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_about_app.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_logo.xml" value="0.13072916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_change_email.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_change_name.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_change_password.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_change_phone_num.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_charge_points.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_days_and_times_opening_employee.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_days_and_times_opening_passenger.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_document.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_log_out.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_logo.xml" value="0.264" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_my_trips.xml" value="0.134375" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_profile.xml" value="0.152" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_setting.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_trip_map.xml" value="0.1" />
-        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_write_post.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_my_trips.xml" value="0.264" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_post_card_view.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_post_news.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_registration.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_review.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_review_card_view.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_setting.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_sign_in.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_trip_map.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_write_post.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/activity_write_post_employee.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/buy_tickets.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/car.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/cars.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/data_card.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/data_card_employee.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/designaboutapp.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/designlogout.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/nav_header.xml" value="0.13072916666666667" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/post_car.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/layout/tickets_information.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/DELL/AndroidStudioProjects/GraduationProject2/app/src/main/res/menu/customer_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/zhdto/AndroidStudioProjects/graduationProject/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/Users/zhdto/AndroidStudioProjects/graduationProject/app/src/main/res/drawable/ic_baseline_help_outline_24.xml" value="0.17916666666666667" />
