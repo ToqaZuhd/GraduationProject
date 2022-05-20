@@ -72,7 +72,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("نشر الأخبار");
+        getSupportActionBar().setTitle("الأخبار");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
