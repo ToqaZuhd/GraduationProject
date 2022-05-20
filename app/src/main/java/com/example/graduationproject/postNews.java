@@ -38,6 +38,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.bumptech.glide.Glide;
 import com.example.graduationproject.Model.Post;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
@@ -72,7 +73,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("الأخبار");
+        getSupportActionBar().setTitle("نشر الأخبار");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
@@ -82,21 +83,38 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.news:
+                        return true;
+                    case R.id.profile:r:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         userID=preferences.getInt("login",-1);
+
         recycler = findViewById(R.id.post_recycler);
         imageView=findViewById(R.id.imageView);
         getName();
-         //   toolbar = findViewById(R.id.toolbar);
-       //     setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("آخر الأخبار");
-
-           // drawerLayout = findViewById(R.id.drawer_layout);
-         //   ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
-          //  drawerLayout.addDrawerListener(toggle);
-          //  toggle.syncState();
-
-          //  NavigationView navigationView = findViewById(R.id.nav_view);
-           // navigationView.setNavigationItemSelectedListener(this);
+        getSupportActionBar().setTitle("آخر الأخبار");
 
             queue = Volley.newRequestQueue(this);
             queue1 = Volley.newRequestQueue(this);
@@ -189,6 +207,8 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
                     UserName = jsonObject.getString("name");
                     imageName=jsonObject.getString("image");
+                    Toast.makeText(postNews.this, imageName,
+                            Toast.LENGTH_SHORT).show();
                     Glide.with(postNews.this).load(imageName).into(imageView);
 
                 } catch (JSONException e) {

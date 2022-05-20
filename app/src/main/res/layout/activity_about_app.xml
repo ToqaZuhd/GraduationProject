@@ -9,15 +9,21 @@
     android:id="@+id/drawer_layout"
     tools:context=".aboutApp"
     tools:openDrawer="start">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/zumthor"
-    android:orientation="vertical"
-    android:gravity="right"
-    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/zumthor"
+
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/zumthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -32,6 +38,7 @@
         android:layout_width="287dp"
         android:layout_height="110dp"
         android:layout_marginTop="52dp"
+        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,8 +49,9 @@
         android:layout_height="26dp"
         android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
+        android:gravity="right"
         android:text="عن تطبيق Pal-Jo crossing"
+        android:layout_marginLeft="220dp"
         android:textSize="17dp"
         android:textStyle="normal|bold"
         android:textColor="@color/blue"
@@ -69,6 +77,20 @@
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
 </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/blue"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_navigation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
 
         android:id="@+id/nav_view"

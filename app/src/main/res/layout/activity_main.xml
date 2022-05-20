@@ -9,125 +9,149 @@
     android:id="@+id/drawer_layout"
     tools:context=".MainActivity"
     tools:openDrawer="start">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/zumthor"
-    android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/navy_blue"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:layout_height="0dp"
+        android:background="@color/zumthor"
 
-<RelativeLayout
-    android:layout_width="390dp"
-    android:layout_height="570dp"
-    android:background="@color/white"
-    android:gravity="center">
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/zumthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/rentCarBtn"
-        android:layout_width="90dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:onClick="rentCarOnClickBtn"
-         android:background="@drawable/car_rental"
-        />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/navy_blue"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <TextView
-        android:id="@+id/rentCarTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rentCarBtn"
-        android:layout_marginLeft="25dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="استئجار سيارة"
-        android:textAlignment="viewEnd"
-        android:textSize="18dp"
-        android:textColor="@color/navy_blue"/>
+        <RelativeLayout
+            android:layout_width="390dp"
+            android:layout_height="570dp"
+            android:background="@color/white"
+            android:gravity="center">
 
-    <Button
-        android:id="@+id/buyTicketBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_toRightOf="@id/rentCarBtn"
-        android:background="@drawable/ticket"
+            <Button
+                android:id="@+id/rentCarBtn"
+                android:layout_width="90dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="rentCarOnClickBtn"
+                android:background="@drawable/car_rental"
+                />
 
-        android:onClick="buyTicketOnClickBtn"
-       />
-    <TextView
-        android:id="@+id/buyTicketTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buyTicketBtn"
-        android:layout_toRightOf="@id/rentCarTxt"
-        android:layout_marginLeft="25dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="شراء تذكرة"
-        android:textAlignment="viewEnd"
-        android:textSize="18dp"
-        android:textColor="@color/navy_blue"/>
+            <TextView
+                android:id="@+id/rentCarTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rentCarBtn"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="استئجار سيارة"
+                android:textAlignment="viewEnd"
+                android:textSize="18dp"
+                android:textColor="@color/navy_blue"/>
 
-    <Button
-        android:id="@+id/neededInfoBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/rentCarTxt"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/information"
-        android:onClick="neededInfoOnClickBtn"
-        />
-    <TextView
-        android:id="@+id/needInfoTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/neededInfoBtn"
-        android:layout_marginLeft="25dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="الوثائق المطلوبة"
-        android:textAlignment="viewEnd"
-        android:textSize="18dp"
-        android:textColor="@color/navy_blue"/>
-    <Button
-        android:id="@+id/tripMapBtn"
-        android:layout_width="70dp"
-        android:layout_height="80dp"
-        android:onClick="tripMapOnClickBtn"
-        android:layout_toRightOf="@id/neededInfoBtn"
-        android:layout_below="@id/buyTicketTxt"
-        android:layout_margin="20dp"
-        android:background="@drawable/save"/>
-    <TextView
-        android:id="@+id/tripMapTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tripMapBtn"
-        android:layout_toRightOf="@id/needInfoTxt"
-        android:layout_marginLeft="25dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="خريطة الرحلة"
-        android:textAlignment="viewEnd"
-        android:textSize="18dp"
-        android:textColor="@color/navy_blue"/>
+            <Button
+                android:id="@+id/buyTicketBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toRightOf="@id/rentCarBtn"
+                android:background="@drawable/ticket"
 
-</RelativeLayout>
+                android:onClick="buyTicketOnClickBtn"
+                />
+            <TextView
+                android:id="@+id/buyTicketTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buyTicketBtn"
+                android:layout_toRightOf="@id/rentCarTxt"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="شراء تذكرة"
+                android:textAlignment="viewEnd"
+                android:textSize="18dp"
+                android:textColor="@color/navy_blue"/>
 
-</LinearLayout>
+            <Button
+                android:id="@+id/neededInfoBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_below="@id/rentCarTxt"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/information"
+                android:onClick="neededInfoOnClickBtn"
+                />
+            <TextView
+                android:id="@+id/needInfoTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/neededInfoBtn"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="الوثائق المطلوبة"
+                android:textAlignment="viewEnd"
+                android:textSize="18dp"
+                android:textColor="@color/navy_blue"/>
+            <Button
+                android:id="@+id/tripMapBtn"
+                android:layout_width="70dp"
+                android:layout_height="80dp"
+                android:onClick="tripMapOnClickBtn"
+                android:layout_toRightOf="@id/neededInfoBtn"
+                android:layout_below="@id/buyTicketTxt"
+                android:layout_margin="20dp"
+                android:background="@drawable/save"/>
+            <TextView
+                android:id="@+id/tripMapTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tripMapBtn"
+                android:layout_toRightOf="@id/needInfoTxt"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="خريطة الرحلة"
+                android:textAlignment="viewEnd"
+                android:textSize="18dp"
+                android:textColor="@color/navy_blue"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/blue"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_navigation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
 
         android:id="@+id/nav_view"

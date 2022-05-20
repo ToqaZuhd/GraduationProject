@@ -9,7 +9,7 @@
     android:id="@+id/drawer_layout"
     tools:context=".Setting"
     tools:openDrawer="start">
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/zumthor">
@@ -20,15 +20,17 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/navy_blue"
         android:elevation="4dp"
+
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
 
 
         <TextView
             android:id="@+id/setting"
             android:layout_width="369dp"
             android:layout_height="47dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="85dp"
             android:fontFamily="sans-serif-condensed"
             android:gravity="right"
             android:text="المعلومات الشخصية"
@@ -50,65 +52,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setting"></ListView>
-<!--    <TextView-->
-<!--        android:id="@+id/ChangeName"-->
-<!--        android:layout_width="369dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginTop="75dp"-->
-<!--        android:fontFamily="sans-serif-condensed"-->
-<!--        android:gravity="right"-->
-<!--        android:text="  تغيير الاسم"-->
-<!--        android:textColor="@color/blue"-->
-<!--        android:textSize="27dp"-->
-<!--        android:textStyle="normal|bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:background="@color/white"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/ChangePass"-->
-<!--        android:layout_width="369dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="sans-serif-condensed"-->
-<!--        android:gravity="right"-->
-<!--        android:text="  تغيير كلمة المرور"-->
-<!--        android:textColor="@color/blue"-->
-<!--        android:textSize="27dp"-->
-<!--        android:textStyle="normal|bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ChangeName"-->
-<!--        android:background="@color/white"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/ChangePhone"-->
-<!--        android:layout_width="369dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="sans-serif-condensed"-->
-<!--        android:gravity="right"-->
-<!--        android:text="تغيير رقم الهاتف"-->
-<!--        android:textColor="@color/blue"-->
-<!--        android:textSize="27dp"-->
-<!--        android:textStyle="normal|bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ChangePass"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/ChangeID"-->
-<!--        android:layout_width="369dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:fontFamily="sans-serif-condensed"-->
-<!--        android:gravity="right"-->
-<!--        android:text="تغيير رقم الهوية"-->
-<!--        android:textColor="@color/blue"-->
-<!--        android:textSize="27dp"-->
-<!--        android:textStyle="normal|bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/ChangePhone"/>-->
-</RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/blue"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_navigation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
 
         android:id="@+id/nav_view"
