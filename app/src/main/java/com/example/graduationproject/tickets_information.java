@@ -6,14 +6,17 @@ import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -39,6 +42,8 @@ public class tickets_information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tickets_information);
 
+        getSupportActionBar().setTitle("معلومات تذاكر الرحلة");
+
         score = findViewById(R.id.score);
         numberText = findViewById(R.id.number);
         barcode = findViewById(R.id.barcode);
@@ -49,6 +54,33 @@ public class tickets_information extends AppCompatActivity {
         System.out.println(scoreData);
         score.setText(" "+ scoreData );
 
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.news:
+                        startActivity(new Intent(getApplicationContext(),postNews.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:r:
+                    startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
         Random rnd = new Random();
         int number = rnd.nextInt(99999);
         numberText.setText(number+"");

@@ -100,7 +100,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
                         return true;
                     case R.id.news:
                         return true;
-                    case R.id.profile:r:
+                    case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),profile.class));
                         overridePendingTransition(0,0);
                         return true;
@@ -207,8 +207,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
                     UserName = jsonObject.getString("name");
                     imageName=jsonObject.getString("image");
-                    Toast.makeText(postNews.this, imageName,
-                            Toast.LENGTH_SHORT).show();
+
                     Glide.with(postNews.this).load(imageName).into(imageView);
 
                 } catch (JSONException e) {
