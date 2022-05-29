@@ -14,9 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -31,17 +36,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class tickets_information extends AppCompatActivity {
+public class tickets_information extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     TextView score ;
     TextView numberText ;
     ImageView barcode;
     LinearLayout info ;
+    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tickets_information);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("معلومات تذاكر الرحلة");
 
         score = findViewById(R.id.score);
@@ -51,39 +61,15 @@ public class tickets_information extends AppCompatActivity {
 
         Intent intent = getIntent();
         String scoreData = intent.getStringExtra("score");
+        String TicketNumber = intent.getStringExtra("ticketNumber");
+
         System.out.println(scoreData);
         score.setText(" "+ scoreData );
+        numberText.setText(TicketNumber+"");
 
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-
-
-        // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId())
-                {
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.news:
-                        startActivity(new Intent(getApplicationContext(),postNews.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.profile:r:
-                    startActivity(new Intent(getApplicationContext(),profile.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
-        Random rnd = new Random();
-        int number = rnd.nextInt(99999);
-        numberText.setText(number+"");
+//        Random rnd = new Random();
+//        int number = rnd.nextInt(99999);
+//        numberText.setText(number+"");
 
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -98,6 +84,7 @@ public class tickets_information extends AppCompatActivity {
 
 
 
+        nav();
 
     }
 
@@ -143,6 +130,74 @@ public class tickets_information extends AppCompatActivity {
         Canvas canvas=new Canvas(bitmap); view.draw(canvas);
         return bitmap;
     }
+
+    public void nav (){
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.news:
+                        startActivity(new Intent(getApplicationContext(),postNews.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:
+                        return true;
+                }
+                return false;
+            }
+        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.aboutApp_nav:
+                intent=new Intent(tickets_information.this, aboutApp.class);
+                startActivity(intent);
+                break;
+            case R.id.myTrips_nav:
+                intent=new Intent(tickets_information.this, MyTrips.class);
+                startActivity(intent);
+                break;
+            case R.id.setting_nav:
+                intent=new Intent(tickets_information.this, Setting.class);
+                startActivity(intent);
+                break;
+
+            case R.id.logOut_nav:
+                intent=new Intent(tickets_information.this, LogOut.class);
+                startActivity(intent);
+                break;
+
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 
     }
 

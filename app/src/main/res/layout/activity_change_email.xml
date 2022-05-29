@@ -10,33 +10,21 @@
 
     <TextView
         android:id="@+id/NewEmail"
-        android:layout_width="369dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="55dp"
+        style="@style/stylee"
         android:fontFamily="sans-serif-condensed"
         android:gravity="right"
+        android:inputType="text"
         android:text="الإيميل الجديد"
-        android:textColor="@color/blue"
-        android:layout_marginLeft="10dp"
         android:textSize="27dp"
-        android:textStyle="normal|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="369dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="right"
+        style="@style/stylee"
         android:hint="الإيميل الجديد"
         android:inputType="textEmailAddress"
-        android:textColor="@color/blue"
-        android:layout_marginLeft="10dp"
-        android:textSize="27dp"
-        android:textStyle="normal|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NewEmail"/>
@@ -45,13 +33,13 @@
         android:id="@+id/save_Button"
         android:layout_width="210dp"
         android:layout_height="57dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="112dp"
         android:backgroundTint="@color/blue"
         android:onClick="btnClkChange"
         android:text="حفظ التعديل"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 

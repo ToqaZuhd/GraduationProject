@@ -75,7 +75,7 @@ public class Setting extends AppCompatActivity implements NavigationView.OnNavig
         populateList();
     }
     public void populateList(){
-        String []arr={"تغيير الاسم","تغيير كلمة السر","تغيير الإيميل","تغيير رقم الهاتف"};
+        String []arr={"تغيير الاسم","تغيير كلمة المرور","تغيير الإيميل","تغيير رقم الهاتف"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 Setting.this, R.layout.style,
                 arr);

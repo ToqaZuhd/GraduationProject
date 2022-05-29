@@ -31,7 +31,7 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
-        getSupportActionBar().setTitle("تغيير كلمة السر");
+        getSupportActionBar().setTitle("تغيير كلمة المرور");
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         previousPass=findViewById(R.id.editPreviousPass);
@@ -42,7 +42,7 @@ public class ChangePassword extends AppCompatActivity {
     }
 
     public void checkPass(){
-        String url = "http://10.0.2.2:82/GraduationProject/searchName.php?id=" + userID;
+        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" + userID;
         RequestQueue queue = Volley.newRequestQueue(ChangePassword.this);
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
@@ -79,7 +79,7 @@ public class ChangePassword extends AppCompatActivity {
         String newPassword=NewPass.getText().toString();
 
         if (newPassword.equals(confirmPass.getText().toString())){
-                String url = "http://10.0.2.2:82/GraduationProject/changes.php";
+                String url = "http://10.0.2.2/GraduationProject/changes.php";
                 RequestQueue queue = Volley.newRequestQueue(ChangePassword.this);
                 StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
                     @Override
@@ -149,4 +149,5 @@ public class ChangePassword extends AppCompatActivity {
             checkPass();
 
     }
+
 }

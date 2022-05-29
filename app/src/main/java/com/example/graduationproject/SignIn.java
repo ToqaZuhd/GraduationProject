@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.Model.user;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,7 +84,7 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(SignIn.this,("ادخل كلمة السر"), Toast.LENGTH_SHORT).show();
 
         else {
-            String url = "http://10.0.2.2:82/GraduationProject/Search.php?email="+Email+"&pass="+pass;
+            String url = "http://10.0.2.2/graduationProject/Search.php?email="+Email+"&pass="+pass;
             RequestQueue queue = Volley.newRequestQueue(SignIn.this);
             StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
                 @Override
@@ -126,7 +127,7 @@ public class SignIn extends AppCompatActivity {
 
                         Intent intent;
                         if (role.equals("user")){
-                            intent = new Intent(SignIn.this, postNews.class);
+                            intent = new Intent(SignIn.this, MainActivity.class);
                             startActivity(intent);
 
                         }

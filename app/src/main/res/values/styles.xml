@@ -48,4 +48,18 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="stylee">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:foregroundGravity">center</item>
+        <item name="android:gravity">right</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">normal|bold</item>
+    </style>
 </resources>

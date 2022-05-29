@@ -129,6 +129,8 @@ public class TripMapActivity extends AppCompatActivity {
         try {
             Geocoder geocoder = new Geocoder(TripMapActivity.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            System.out.println("salma"+location.getLatitude());
+            System.out.println(location.getLongitude());
             String address = addresses.get(0).getAddressLine(0);
             String currentTime = new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
 

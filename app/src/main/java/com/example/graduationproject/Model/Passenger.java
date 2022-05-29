@@ -1,7 +1,5 @@
 package com.example.graduationproject.Model;
 
-import com.example.graduationproject.Trip;
-
 public class Passenger {
     private int ID;
     private String username;
