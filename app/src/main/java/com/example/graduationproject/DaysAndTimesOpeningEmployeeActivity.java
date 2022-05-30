@@ -40,7 +40,7 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity {
 
     public void getPosts() {
         List<PostEmployee> employeeList = new ArrayList<>();
-        String BASE_URL = "http://10.0.2.2:82/GraduationProject/getPostDataEmployee.php";
+        String BASE_URL = "http://10.0.2.2/GraduationProject/getPostDataEmployee.php";
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

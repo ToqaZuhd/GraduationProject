@@ -117,4 +117,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void timesOnClickBtn(View view) {
+        Intent intent = new Intent(this, DaysAndTimesOpeningPassengerActivity.class);
+        startActivity(intent);
+    }
+
+    public void reviewsOnClickBtn(View view) {
+        Intent intent = new Intent(this, Review.class);
+        startActivity(intent);
+    }
 }

@@ -45,7 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Review extends AppCompatActivity {
 
     private RequestQueue queue;
-    private static final String BASE_URL = "http://10.0.2.2:82/GraduationProject/getReview.php";
+    private static final String BASE_URL = "http://10.0.2.2/GraduationProject/getReview.php";
     RecyclerView recycler;
 
     List<Post> posts=new ArrayList<>();
@@ -177,7 +177,7 @@ public class Review extends AppCompatActivity {
 
         if (!post.isEmpty() || flag)
         {
-        String url = "http://10.0.2.2:82/GraduationProject/addReview.php";
+        String url = "http://10.0.2.2/GraduationProject/addReview.php";
         RequestQueue queue = Volley.newRequestQueue(Review.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -234,7 +234,7 @@ public class Review extends AppCompatActivity {
 
     public void getImage() {
 
-        String url = "http://10.0.2.2:82/GraduationProject/searchName.php?id=" +userID;
+        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" +userID;
         RequestQueue queue = Volley.newRequestQueue(Review.this);
         StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
