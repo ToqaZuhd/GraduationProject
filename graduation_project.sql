@@ -33,7 +33,7 @@ CREATE TABLE `car` (
   `car_type` varchar(30) NOT NULL,
   `car_price` int NOT NULL,
   `car_provider` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `car`
@@ -54,7 +54,7 @@ CREATE TABLE `daysandtimesopening` (
   `id` int NOT NULL,
   `date` varchar(90) NOT NULL,
   `post` varchar(350) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `daysandtimesopening`
@@ -75,7 +75,7 @@ CREATE TABLE `posts` (
   `userId` int NOT NULL,
   `date` datetime NOT NULL,
   `post` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ CREATE TABLE `review` (
   `date` varchar(50) NOT NULL,
   `review` varchar(250) NOT NULL,
   `rate` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `review`
@@ -113,7 +113,7 @@ CREATE TABLE `trip` (
   `TripDate` date NOT NULL,
   `rewardPoints` int NOT NULL,
   `carNumber` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `trip`
@@ -153,9 +153,9 @@ CREATE TABLE `userdata` (
   `password` varchar(100) NOT NULL,
   `role` varchar(25) NOT NULL,
   `score` int NOT NULL,
-  `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `userdata`
