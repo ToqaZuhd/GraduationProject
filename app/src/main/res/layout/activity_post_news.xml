@@ -22,58 +22,74 @@
         android:background="@color/navy_blue"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintBottom_toTopOf="@+id/linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="wrap_content"
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
 
-    <TextView
-        android:background="@drawable/roundedstyle"
-        android:id="@+id/status"
-        android:layout_width="281dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginLeft="25dp"
-        android:text="         ما هي الحالة"
-        android:gravity="center_vertical"
-          android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        android:onClick="btnClkPost"
-        />
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="40dp"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
-          android:layout_marginLeft="20dp"
-            />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView9"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/user__1_"
+                app:civ_border_color="@color/navy_blue"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="270dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/roundedstyle"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right|top"
+                android:hint="أضف منشور"
+                android:onClick="btnClkPost"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="clip_horizontal"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/zumthor"
+            android:backgroundTint="@color/zumthor"
+            android:scrollbars="vertical" />
+
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/post_recycler"
-        android:layout_width="390dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear1"
-        android:scrollbars="vertical"
-
-        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -83,17 +99,21 @@
         app:itemBackground="@color/blue"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_navigation" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-<!--    <com.google.android.material.navigation.NavigationView-->
+        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:menu="@menu/menu_navigation">
 
-<!--        android:id="@+id/nav_view"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        app:headerLayout="@layout/nav_header"-->
-<!--        app:menu="@menu/customer_menu" />-->
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.navigation.NavigationView
+
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/customer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

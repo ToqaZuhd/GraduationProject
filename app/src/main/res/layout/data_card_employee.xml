@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
-    app:cardCornerRadius="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
     card_view:cardElevation="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:gravity="right"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/dateTxtEmp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/dataTxtEmp"
-            android:textColor="@color/navy_blue"
-            android:textSize="18dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:gravity="right">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <Button
+            <TextView
+                android:id="@+id/dateTxtEmp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:text="حذف"
+                android:gravity="center"
+                android:text="yyyy-mm-dd"
+                android:textColor="@color/navy_blue"
+                android:textSize="21dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dataTxtEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="right|top"
+                android:padding="5dp"
+                android:text="Information"
+                android:textColor="@color/navy_blue"
+                android:textSize="19dp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center">
+
+            <Button
                 android:id="@+id/deleteEmBtn"
-                android:textColor="@color/zumthor"
-                android:backgroundTint="@color/navy_blue" />
-
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:text="تعديل"
-                android:id="@+id/editEmBtn"
+                android:backgroundTint="@color/navy_blue"
+                android:text="حذف"
                 android:textColor="@color/zumthor"
-                android:backgroundTint="@color/navy_blue"/>
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/editEmBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:backgroundTint="@color/navy_blue"
+                android:text="تعديل"
+                android:textColor="@color/zumthor"
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

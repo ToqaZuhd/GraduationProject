@@ -49,11 +49,11 @@ public class writePost extends AppCompatActivity{
     SharedPreferences preferences;
     private int userID;
 
-    TextView Name;
+//    TextView Name;
     EditText edtPost;
     Button btnPost;
     CircleImageView imageView;
-
+    Toolbar toolbar;
 
 
     @Override
@@ -65,18 +65,32 @@ public class writePost extends AppCompatActivity{
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         Intent intent=getIntent();
-        String userName=intent.getStringExtra("name");
-        String imageName=intent.getStringExtra("image");
-
-        Name=findViewById(R.id.Name);
-        Name.setText(userName);
-
-        imageView=findViewById(R.id.imageView);
-        Glide.with(writePost.this).load(imageName).into(imageView);
+//        String userName=intent.getStringExtra("name");
+//        String imageName=intent.getStringExtra("image");
+//
+//        Name=findViewById(R.id.Name);
+//        Name.setText(userName);
+//
+//        imageView=findViewById(R.id.imageView);
+//        Glide.with(writePost.this).load(imageName).into(imageView);
 
         edtPost=findViewById(R.id.Post);
         btnPost=findViewById(R.id.btnPost);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("كتابة منشور");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void btnClkPost(View view) {
@@ -101,7 +115,7 @@ public class writePost extends AppCompatActivity{
     private void addPost(String userID, String date, String post) {
 
 
-        String url = "http://10.0.2.2:82/GraduationProject/addPost.php";
+        String url = "http://10.0.2.2/graduationProject/addPost.php";
         RequestQueue queue = Volley.newRequestQueue(writePost.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

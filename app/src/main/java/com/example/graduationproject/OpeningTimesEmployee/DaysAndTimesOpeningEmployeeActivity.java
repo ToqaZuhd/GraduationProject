@@ -1,4 +1,4 @@
-package com.example.graduationproject;
+package com.example.graduationproject.OpeningTimesEmployee;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.Model.PostEmployee;
+import com.example.graduationproject.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,9 +54,7 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity {
                                 String date = jsonObject.getString("date");
                                 String post = jsonObject.getString("post");
 
-
                                 employeeList.add(new PostEmployee(id, date, post));
-
                             }
 
                             RecyclerView recycler = findViewById(R.id.post_recyclerEm);

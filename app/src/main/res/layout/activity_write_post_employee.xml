@@ -4,46 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     android:background="@color/zumthor"
-    android:gravity="right"
-    tools:context=".WritePostEmployeeActivity">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".OpeningTimesEmployee.WritePostEmployeeActivity">
 
     <TextView
+        android:id="@+id/datePost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginRight="20dp"
-        android:text=" إذا لم يكن تاريخ اليوم حدد التاريخ لطفا"
-        android:gravity="center_vertical"
+        android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textSize="22dp"
+        android:gravity="center"
+        android:text="الرجاء اختيار التاريخ المراد نشر المعلومة عنه "
         android:textColor="@color/navy_blue"
-        android:id="@+id/datePost"/>
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/chooseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/navy_blue"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
+        android:onClick="btnClkPostByEm"
+        android:text="إختيار التاريخ"
+        android:textColor="@color/zumthor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/datePost2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:textColor="@color/navy_blue"
+        android:textSize="22dp" />
+
     <EditText
         android:id="@+id/PostEmployeeEdt"
         android:layout_width="360dp"
-        android:layout_height="267dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/roundedstyle"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="sans-serif"
         android:gravity="right"
-        android:textSize="25dp" />
+        android:hint="أدخل المعلومة"
+        android:padding="15dp"
+        android:textColor="@color/navy_blue"
+        android:textSize="20dp" />
 
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/navy_blue"
         android:fontFamily="sans-serif-condensed"
+        android:gravity="center_horizontal"
         android:onClick="btnClkPostByEm"
         android:text="نشر"
-        android:textSize="22dp"
-        android:visibility="visible"
         android:textColor="@color/zumthor"
-        android:backgroundTint="@color/navy_blue"/>
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 
 </LinearLayout>

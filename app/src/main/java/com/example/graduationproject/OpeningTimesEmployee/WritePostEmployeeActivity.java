@@ -1,9 +1,10 @@
-package com.example.graduationproject;
+package com.example.graduationproject.OpeningTimesEmployee;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +38,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     String prevPost = "";
     EditText edtPost;
     TextView postDateEdt;
+    Button chooseDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,9 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write_post_employee);
         getSupportActionBar().setTitle("إضافة موعد أو معلومة");
 
-        postDateEdt = findViewById(R.id.datePost);
+        postDateEdt = findViewById(R.id.datePost2);
         edtPost = findViewById(R.id.PostEmployeeEdt);
+        chooseDate = findViewById(R.id.chooseDate);
         Intent intent = getIntent();
        /* if (intent != null) {
             numMethod = 1;
@@ -73,7 +77,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        postDateEdt.setOnClickListener(new View.OnClickListener() {
+        chooseDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(WritePostEmployeeActivity.this, new DatePickerDialog.OnDateSetListener() {
@@ -126,7 +130,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     }
 
     private void addPost(String date, String post) {
-        String url = "http://10.0.2.2:82/GraduationProject/addPostData.php";
+        String url = "http://10.0.2.2/GraduationProject/addPostData.php";
         RequestQueue queue = Volley.newRequestQueue(WritePostEmployeeActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -172,7 +176,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     }
 
     private void updatePost(String id, String date, String post) {
-        String url = "http://10.0.2.2:82/GraduationProject/updatePostData.php";
+        String url = "http://10.0.2.2/GraduationProject/updatePostData.php";
         RequestQueue queue = Volley.newRequestQueue(WritePostEmployeeActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

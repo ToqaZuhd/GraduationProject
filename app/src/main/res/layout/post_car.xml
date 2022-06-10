@@ -13,7 +13,7 @@
         android:background="#EBE9F0"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".PostCar">>
+        tools:context=".CarProvider.PostCar">>
 
         <ImageView
             android:id="@+id/imageToUpload"
@@ -24,16 +24,28 @@
 
         <Button
             android:id="@+id/uploadPhoto"
-            android:layout_width="40dp"
+            android:layout_width="42dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginBottom="20dp"
             android:onClick="uploadPhotoOnClick"
             android:text="+"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            app:backgroundTint="#FFFFFF"
+            android:textColor="@color/navy_blue"
+            android:textSize="20sp"
+            app:backgroundTint="#CECCD3"
             app:cornerRadius="20dp" />
+
+        <EditText
+            android:id="@+id/car_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="رقم السيارة"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/car_type"

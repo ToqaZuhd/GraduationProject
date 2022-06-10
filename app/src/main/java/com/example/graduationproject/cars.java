@@ -21,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,6 +33,9 @@ import com.example.graduationproject.Model.carOOB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,6 +43,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class cars extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -81,10 +87,11 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
                                 String[] info = array[i].split(",");
                                 carOOB car = new carOOB();
 
-                                car.setCarImage(info[0].trim());
-                                car.setCar_type(info[1].trim());
-                                car.setCar_price(Integer.parseInt(info[2].trim()));
-                                car.setCar_provider(info[3].trim());
+                                car.setCar_number(Integer.parseInt(info[0].trim()));
+                                car.setCarImage(info[1].trim());
+                                car.setCar_type(info[2].trim());
+                                car.setCar_price(Integer.parseInt(info[3].trim()));
+                                car.setCar_provider(info[4].trim());
                                 carsArray.add(car);
 
 
@@ -96,12 +103,14 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
 
                         RecyclerView recycler = (RecyclerView) findViewById(R.id.cars_recycler);
 
+                        int[] cars_numbers = new int[carsArray.size()];
                         String[] cars_Images = new String[carsArray.size()];
                         String[] cars_types = new String[carsArray.size()];
                         int[] cars_prices = new int[carsArray.size()];
                         String [] cars_providers = new String [carsArray.size()];
 
                         for(int i = 0; i<carsArray.size();i++){
+                            cars_numbers[i] = carsArray.get(i).getCar_number();
                             cars_Images[i] = carsArray.get(i).getCarImage();
                             cars_types[i] = carsArray.get(i).getCar_type();
                             cars_prices[i] = carsArray.get(i).getCar_price();
@@ -109,7 +118,7 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
                         }
 
                         recycler.setLayoutManager(new LinearLayoutManager(cars.this));
-                        carsAdapter adapter = new carsAdapter(cars_Images, cars_types, cars_prices,cars_providers);
+                        carsAdapter adapter = new carsAdapter(cars_numbers,cars_Images, cars_types, cars_prices,cars_providers);
                         recycler.setAdapter(adapter);
 
 
@@ -160,6 +169,8 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
@@ -200,5 +211,7 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.graduationproject.Model;
 
 public class carOOB {
+    private int car_number;
     private String carImage;
     private String car_type;
     private int car_price;
@@ -9,11 +10,20 @@ public class carOOB {
     public carOOB() {
     }
 
-    public carOOB(String carImage, String car_type, int car_price, String car_provider) {
+    public carOOB(int car_number, String carImage, String car_type, int car_price, String car_provider) {
+        this.car_number = car_number;
         this.carImage = carImage;
         this.car_type = car_type;
         this.car_price = car_price;
         this.car_provider = car_provider;
+    }
+
+    public int getCar_number() {
+        return car_number;
+    }
+
+    public void setCar_number(int car_number) {
+        this.car_number = car_number;
     }
 
     public String getCarImage() {
@@ -51,7 +61,8 @@ public class carOOB {
     @Override
     public String toString() {
         return "carOOB{" +
-                "carImage=" + carImage +
+                "car_number=" + car_number +
+                ", carImage='" + carImage + '\'' +
                 ", car_type='" + car_type + '\'' +
                 ", car_price=" + car_price +
                 ", car_provider='" + car_provider + '\'' +

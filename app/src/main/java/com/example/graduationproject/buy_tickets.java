@@ -48,7 +48,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
     Button know_total;
     TextView total_cost;
     int bagsPr;
-    int total;
+    int total ;
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
     SharedPreferences preferences;
@@ -68,7 +68,9 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
 
 
+
         getBags_number();
+        total = 192 + bagsPr;
 
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
@@ -80,6 +82,8 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
         know_total = findViewById(R.id.know_total);
         total_cost = findViewById(R.id.total_cost);
+
+
         bagsPr = bags_num.getValue()*6;
         getScore();
 
@@ -133,7 +137,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
     private void getBags_number() {
         bags_num = (NumberPicker)findViewById(R.id.bags_num);
-        bags_num.setMinValue(1);
+        bags_num.setMinValue(0);
         bags_num.setMaxValue(20);
         bags_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -147,11 +151,14 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
 
     public void knowTotal(View view) {
+        total = 0;
         total = 192 + bagsPr;
         System.out.println(total);
         total_cost.setText("التكلفة الإجمالية : " + total + " نقطة ");
 
     }
+
+
 
 
 
@@ -284,33 +291,52 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
     }
 
 
-    public void alert() {
-
-    }
-
 
     public void buyOnClick(View view)  {
         if (total <= scoreNum) {
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setIcon(R.drawable.rewards)
-                    .setTitle(" لقد حصلت على " + rewardPoints() + " نقاط إضافية !" )
-                    .setMessage("تم إضافة النقاط إلى رصيد نقاطك")
-                    .setPositiveButton("حسناً", new DialogInterface.OnClickListener() {
+
+            AlertDialog alertDialog1 = new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ask)
+                    .setTitle("تأكيد عملية الشراء")
+                    .setMessage("التكلفة الإجمالية هي "+total+ " هل تريد المتابعة ؟" )
+                    .setPositiveButton("متابعة", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            AlertDialog alertDialog2 = new AlertDialog.Builder(buy_tickets.this)
+                                    .setIcon(R.drawable.rewards)
+                                    .setTitle(" لقد حصلت على " + rewardPoints() + " نقاط إضافية !" )
+                                    .setMessage("تم إضافة النقاط إلى رصيد نقاطك")
+                                    .setPositiveButton("حسناً", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            updateScore();
+                                            makeTrip();
+                                            System.out.println(trip);
+                                            insertTrip();
+                                            Intent intent = new Intent(buy_tickets.this, tickets_information.class);
+                                            int newScore = scoreNum-total+rewardPoints();
+                                            intent.putExtra("score",newScore +"");
+                                            intent.putExtra("ticketNumber",trip.getTicketID() +"");
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+                        }
+                    })
+
+                    .setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
-                            updateScore();
-                            makeTrip();
-                            System.out.println(trip);
-                            insertTrip();
-                            Intent intent = new Intent(buy_tickets.this, tickets_information.class);
-                            int newScore = scoreNum-total+rewardPoints();
-                            intent.putExtra("score",newScore +"");
-                            intent.putExtra("ticketNumber",trip.getTicketID() +"");
-                            startActivity(intent);
+
                         }
                     })
+
                     .show();
+
+
+
 
 
         }
@@ -358,6 +384,8 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;

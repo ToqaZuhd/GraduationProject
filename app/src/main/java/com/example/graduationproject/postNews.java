@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -36,7 +39,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.bumptech.glide.Glide;
 import com.example.graduationproject.Model.Post;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -52,7 +54,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
     private int userID;
     private RequestQueue queue;
     private RequestQueue queue1;
-    private static final String BASE_URL = "http://10.0.2.2:82/GraduationProject/getPostData.php";
+    private static final String BASE_URL = "http://10.0.2.2/GraduationProject/getPostData.php";
     RecyclerView recycler;
 
     List<Post> posts=new ArrayList<>();
@@ -74,6 +76,8 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("نشر الأخبار");
+
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
@@ -110,10 +114,11 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         userID=preferences.getInt("login",-1);
+        getImage();
 
-        recycler = findViewById(R.id.post_recycler);
-        imageView=findViewById(R.id.imageView);
-        getName();
+        recycler = findViewById(R.id.recyclerView);
+        imageView=findViewById(R.id.imageView9);
+
         getSupportActionBar().setTitle("آخر الأخبار");
 
             queue = Volley.newRequestQueue(this);
@@ -125,7 +130,48 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
             populateAllData();
 
 
+
     }
+
+    public void getImage(){
+        queue = Volley.newRequestQueue(postNews.this);
+        String BASE_URL = "http://10.0.2.2/GraduationProject/searchName.php?id="+userID;
+        StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+
+                            JSONObject jsonObject= new JSONObject(response);
+                            imageName = jsonObject.getString("image");
+
+                            if(!(imageName.isEmpty())){
+                                // decode base64 string
+                                byte[] bytes= Base64.decode(imageName,Base64.DEFAULT);
+                                // Initialize bitmap
+                                Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                                // set bitmap on imageView
+                                imageView.setImageBitmap(bitmap);
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(postNews.this, error.toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
+    }
+
     public void populateAllData(){
 
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
@@ -194,38 +240,44 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         startActivity(intent);
     }
 
-
-    public void getName() {
-        String url = "http://10.0.2.2:82/GraduationProject/searchName.php?id=" + userID;
-        RequestQueue queue = Volley.newRequestQueue(postNews.this);
-        StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-
-
-                    UserName = jsonObject.getString("name");
-                    imageName=jsonObject.getString("image");
-
-                    Glide.with(postNews.this).load(imageName).into(imageView);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(postNews.this,
-                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        queue.add(request);
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
+
+
+//    public void getName() {
+//        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" + userID;
+//        RequestQueue queue = Volley.newRequestQueue(postNews.this);
+//        StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//
+//
+//                    UserName = jsonObject.getString("name");
+//                    imageName=jsonObject.getString("image");
+//
+//                    Glide.with(postNews.this).load(imageName).into(imageView);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }, new com.android.volley.Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(postNews.this,
+//                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        queue.add(request);
+//
+//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

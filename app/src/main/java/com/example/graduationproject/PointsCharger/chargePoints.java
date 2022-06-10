@@ -1,4 +1,4 @@
-package com.example.graduationproject;
+package com.example.graduationproject.PointsCharger;
 
 import android.Manifest;
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.example.graduationproject.R;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

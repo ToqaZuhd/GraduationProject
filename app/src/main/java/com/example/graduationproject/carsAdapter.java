@@ -1,30 +1,49 @@
 package com.example.graduationproject;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>  {
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>{
+
+    private int[] carsNumbers;
     private String [] carsImages;
     private String[]carsTypes;
     private int[] carsPrices;
     private String[]carsProviders;
 
 
-    public carsAdapter( String []  carsImages,String[] carsTypes, int[] carsPrices, String[] carsProviders) {
+
+    public carsAdapter(int[] carsNumbers, String[] carsImages, String[] carsTypes, int[] carsPrices, String[] carsProviders) {
+        this.carsNumbers = carsNumbers;
         this.carsImages = carsImages;
         this.carsTypes = carsTypes;
         this.carsPrices = carsPrices;
         this.carsProviders = carsProviders;
-
     }
 
     @Override
@@ -52,6 +71,7 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>  {
 //        imageView.setImageDrawable(dr);
 
 
+
         ImageView car_image = (ImageView)cardView.findViewById(R.id.car_image);
         // decode base64 string
         byte[] bytes= Base64.decode(carsImages[position],Base64.DEFAULT);
@@ -59,6 +79,9 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>  {
         Bitmap bitmap= BitmapFactory.decodeByteArray(bytes,0,bytes.length);
         // set bitmap on imageView
         car_image.setImageBitmap(bitmap);
+
+        TextView txt_carNumber = (TextView)cardView.findViewById(R.id.car_number);
+        txt_carNumber.setText(" رقم السيارة : " + carsNumbers[position]);
 
         TextView txt_carType = (TextView)cardView.findViewById(R.id.car_type);
         txt_carType.setText( carsTypes[position]);
@@ -85,5 +108,7 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>  {
         }
 
     }
+
+
 
 }

@@ -68,5 +68,14 @@ public class Post {
         this.imageURL = imageURL;
     }
 
-
+    @Override
+    public String toString() {
+        return "Post{" +
+                "Name='" + Name + '\'' +
+                ", Date='" + Date + '\'' +
+                ", text='" + text + '\'' +
+                ", review=" + review +
+                ", imageURL='" + imageURL + '\'' +
+                '}';
+    }
 }

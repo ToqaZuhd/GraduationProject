@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.graduationproject.OpeningTimesEmployee.DaysAndTimesOpeningEmployeeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void reviewsOnClickBtn(View view) {
-        Intent intent = new Intent(this, Review.class);
+        Intent intent = new Intent(this, StateOfPeople.class);
         startActivity(intent);
     }
 }

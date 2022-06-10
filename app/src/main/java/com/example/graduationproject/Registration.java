@@ -59,7 +59,7 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(Registration.this,("ادخل رقم الهاتف أولاً"), Toast.LENGTH_SHORT).show();
 
         else if (Password.isEmpty())
-            Toast.makeText(Registration.this,("ادخل كملة السر"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Registration.this,("ادخل كملة المرور"), Toast.LENGTH_SHORT).show();
 
         else if (confirmPassword.isEmpty())
             Toast.makeText(Registration.this,("ادخل كلمة السر مرة أخرى"), Toast.LENGTH_SHORT).show();

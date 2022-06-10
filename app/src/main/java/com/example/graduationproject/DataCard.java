@@ -41,7 +41,7 @@ public class DataCard extends RecyclerView.Adapter<DataCard.ViewHolder>{
         TextView dataTxtView = (TextView) cardView.findViewById(R.id.dataTxtPass);
 
         PostEmployee postEmployee = employeeList.get(position);
-        dateTxtView.setText(postEmployee.getDate());
+        dateTxtView.setText("التاريخ : "+postEmployee.getDate());
         dataTxtView.setText(postEmployee.getText());
 
 

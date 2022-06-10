@@ -1,20 +1,18 @@
 package com.example.graduationproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.bumptech.glide.Glide;
 import com.example.graduationproject.Model.Post;
 
 import java.util.List;
@@ -51,15 +49,24 @@ public class reviewCardView extends RecyclerView.Adapter<reviewCardView.ViewHold
     public void onBindViewHolder(reviewCardView.ViewHolder holder, int position) {
 
         CardView cardView = holder.cardView;
-        ImageView img = (ImageView) cardView.findViewById(R.id.imageView);
-        Glide.with(context).load(posts.get(position).getImageURL()).into(img);
+        ImageView img = (ImageView) cardView.findViewById(R.id.imageView9);
+//        Glide.with(context).load(posts.get(position).getImageURL()).into(img);
+
+        if(!(posts.get(position).getImageURL().isEmpty())) {
+            byte[] bytes = Base64.decode(posts.get(position).getImageURL(), Base64.DEFAULT);
+            // Initialize bitmap
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            // set bitmap on imageView
+            img.setImageBitmap(bitmap);
+        }
+
 
 
         TextView tvName= cardView.findViewById(R.id.Name);
         Post post=posts.get(position);
         tvName.setText(post.getName());
 
-        TextView tvDate=cardView.findViewById(R.id.Date);
+        TextView tvDate=cardView.findViewById(R.id.Date1);
         tvDate.setText(post.getDate());
 
         RatingBar tvRate=cardView.findViewById(R.id.rating_bar_small);

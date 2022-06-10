@@ -1,31 +1,23 @@
 package com.example.graduationproject;
 
 import android.content.Context;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.content.Intent;
-import android.util.Log;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.bumptech.glide.Glide;
 import com.example.graduationproject.Model.Post;
 
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 
 public class postCardView extends RecyclerView.Adapter<postCardView.ViewHolder> {
 
@@ -58,9 +50,16 @@ public class postCardView extends RecyclerView.Adapter<postCardView.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         CardView cardView = holder.cardView;
-        ImageView img = (ImageView) cardView.findViewById(R.id.imageView);
-        Glide.with(context).load(posts.get(position).getImageURL()).into(img);
+        ImageView img = (ImageView) cardView.findViewById(R.id.imageView9);
 
+        System.out.println(posts);
+        if(!(posts.get(position).getImageURL().isEmpty())) {
+            byte[] bytes = Base64.decode(posts.get(position).getImageURL(), Base64.DEFAULT);
+            // Initialize bitmap
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            // set bitmap on imageView
+            img.setImageBitmap(bitmap);
+        }
 
         TextView tvName= cardView.findViewById(R.id.Name);
         Post post=posts.get(position);

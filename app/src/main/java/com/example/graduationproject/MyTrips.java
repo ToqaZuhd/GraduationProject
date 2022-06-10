@@ -58,6 +58,8 @@ public class MyTrips extends AppCompatActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("رحلاتي");
 
+
+
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
 
@@ -82,7 +84,7 @@ public class MyTrips extends AppCompatActivity implements NavigationView.OnNavig
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            String[] array = response.split("@");
+                            String[] array = response.split("/");
 
 
                             for (int i = 0; i < array.length; i++) {
@@ -167,6 +169,8 @@ public class MyTrips extends AppCompatActivity implements NavigationView.OnNavig
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;

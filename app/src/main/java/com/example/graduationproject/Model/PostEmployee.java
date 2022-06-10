@@ -34,4 +34,13 @@ public class PostEmployee {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return "PostEmployee{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
