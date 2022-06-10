@@ -25,7 +25,7 @@ if(isset($_GET['cat'])){
 
 	if ($result->num_rows >0) {
 		while($row = $result->fetch_assoc()){
-			$data.= $row["car_image"]. " , " .$row["car_type"]. " , " . $row["car_price"]. " , " . $row["car_provider"] . " @ " ;
+			$data.=$row["car_number"]. " , " . $row["car_image"]. " , " .$row["car_type"]. " , " . $row["car_price"]. " , " . $row["car_provider"] . " @ " ;
 		}
 		echo $data ;
 	} else {
@@ -35,4 +35,8 @@ if(isset($_GET['cat'])){
 
 
  ?>
+
+
+
+ 
 

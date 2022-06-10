@@ -3,6 +3,7 @@
 
 
 	$id = "";
+	
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];
 	}
@@ -27,13 +28,16 @@
 		$row =mysqli_fetch_assoc($result);
 	    $row2=mysqli_fetch_assoc($result2);
 		
+		if(!empty($row)){
 		$response['name']= $row['Name'];
 		$response['image']= $row['image'];
 		$response['password']= $row['password']; 
 		$response['phoneNum']= $row['phoneNum'];
 		$response['email']= $row['email'];
-		$response['score']= $row['score'];
-		$response['rate']=$row2['rate'];
+		$response['score']= $row['score'];}
+		
+		if(!empty($row2)){
+		$response['rate']=$row2['rate'];}
 		echo json_encode($response);
 		
 		$conn->close();

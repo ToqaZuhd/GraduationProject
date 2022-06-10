@@ -11,7 +11,7 @@
 		$server_name = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "graduationproject";
+		$dbname = "graduation_project";
 		$response  = array();
 		
 		$conn = new mysqli($server_name, $username, $password, $dbname);
@@ -22,7 +22,7 @@
 		$sql = "insert into daysandtimesopening(date, post) values('" . $date . "','" . $post . "')";
 		if ($conn->query($sql) === TRUE) {
 			$response['error'] = false;
-			$response['message'] = "post added successfully!";
+			$response['message'] = "تم إضافة المعلومة بنجاح ";
 			
 
 			

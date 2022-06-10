@@ -14,7 +14,7 @@
 		$server_name = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "Graduation_project";
+		$dbname = "graduation_project";
 		
 		$conn = new mysqli($server_name, $username, $password, $dbname);
 		if ($conn->connect_error) {
@@ -41,7 +41,7 @@
         else{
 			if ($conn->query($sql2) === TRUE) {
 			$response['error'] = false;
-			$response['message'] = "image added successfully!";
+			$response['message'] = "تمت إضافة الصورة بنجاح ";
 		} else {
 			$response['error'] = true;
 			$response['message'] = "Error, " . $conn->error;

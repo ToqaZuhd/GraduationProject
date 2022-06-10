@@ -18,10 +18,11 @@ if(isset($_GET['cat'])){
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-	$sql = "select * from userdata group by Full_name" ;
+	$sql = "select * from userdata " ;
 
 	$result = $conn->query($sql);
 	$data = "";
+	
 
 	if ($result->num_rows >0) {
 		while($row = $result->fetch_assoc()){
@@ -37,4 +38,3 @@ if(isset($_GET['cat'])){
 
 
  ?>
-

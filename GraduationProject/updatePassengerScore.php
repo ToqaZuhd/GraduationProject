@@ -17,11 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 
-		$conn->query("UPDATE `userdata` set `score` =" . $score . " + ( SELECT `score` WHERE `userId` = '" . $ID ."' ) WHERE `userId` = '" . $ID ."'") ;
+		$conn->query("UPDATE `passenger` set `score` =" . $score . " + ( SELECT `score` WHERE `ID` = '" . $ID ."' ) WHERE `ID` = '" . $ID ."'") ;
 
 
 		
-		
+	
+
 		if ( $conn->affected_rows == 0) {
 			echo "failed" ;
 			

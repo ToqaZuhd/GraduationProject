@@ -23,7 +23,7 @@
 		$sql1 = "update daysandtimesopening set date='$date' where id='$id'";
 		if ($conn->query($sql) === TRUE) {
 			$response['error'] = false;
-			$response['message'] = "post updated!";
+			$response['message'] = "تم التعديل بنجاح!";
 			
 		} else {
 			$response['error'] = true;
@@ -32,7 +32,7 @@
 		}
 		if ($conn->query($sql1) === TRUE) {
 			$response['error'] = false;
-			$response['message'] = "post updated!";
+			$response['message'] = "تم التعديل بنجاح ";
 			
 		} else {
 			$response['error'] = true;

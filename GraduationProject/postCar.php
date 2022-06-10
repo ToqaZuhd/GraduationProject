@@ -1,6 +1,7 @@
 <?php
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$car_number = isset($_POST['car_number']) ? $_POST['car_number'] : "";
 		$car_image = isset($_POST['car_image']) ? $_POST['car_image'] : "";
 		$car_type = isset($_POST['car_type']) ? $_POST['car_type'] : "";
 		$car_price = isset($_POST['car_price']) ? $_POST['car_price'] : "";
@@ -16,15 +17,22 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "insert into car (car_image, car_type, car_price, car_provider) values('".$car_image."','".$car_type."','". $car_price . "','" . $car_provider . "')" ;
-		if ($conn->query($sql) == TRUE) {
-			echo "New car posted successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;
-		}
+		$sql = "insert into car (car_number, car_image, car_type, car_price, car_provider) values('".$car_number."','".$car_image."','".$car_type."','". $car_price . "','" . $car_provider . "')" ;
 
+		if ($conn->query($sql) === TRUE) {
+			$response['error'] = false;
+			$response['message'] = "تم إضافة السيارة بنجاح ";
+		} else {
+			$response['error'] = true;
+			$response['message'] = "Error " . $conn->error;
+			
+		} 
+
+		echo json_encode($response);
 		$conn->close();
 
 	}	
 		
 ?>
+
+

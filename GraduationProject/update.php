@@ -13,7 +13,6 @@ $conn = new mysqli($server_name,$username ,$password, $dbname);
  $DefaultId = 0;
  
  $ImageData = $_POST['image'];
- 
 
  $GetOldIdSQL ="SELECT userId FROM userdata";
  

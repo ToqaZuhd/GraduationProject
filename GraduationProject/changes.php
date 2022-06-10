@@ -7,7 +7,7 @@
 		$Id= isset($_POST['id']) ? $_POST['id'] : "";
 		$Name = isset($_POST['name']) ? $_POST['name'] : "";       
 		$passwordUser = isset($_POST['pass']) ? $_POST['pass'] : "";
-        $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
 		
 		$server_name = "localhost";
 		$username = "root";
