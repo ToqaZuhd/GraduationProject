@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -69,11 +71,13 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(Registration.this,("لا يوجد تطابق بين كلمة السر وإعادتها"), Toast.LENGTH_SHORT).show();
 
 
-        else addPerson(UserName, IDNumber,PhoneNumber,email ,Password);
+        else check_Email_Validation(UserName, IDNumber,PhoneNumber,email ,Password);
     }
 
     private void addPerson(String UserName, String IDNum,String PhoneNum,String Email ,String Password){
-        String url = "http://10.0.2.2/GraduationProject/AddUsers.php";
+
+
+        String url = "http://10.0.2.2:80/GraduationProject/AddUsers.php";
         RequestQueue queue = Volley.newRequestQueue(Registration.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -81,9 +85,16 @@ public class Registration extends AppCompatActivity {
                 Log.e("TAG", "RESPONSE IS " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Toast.makeText(Registration.this,
-                            jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
+                    if (jsonObject.getString("error").equals("false")) {
+                        Toast.makeText(Registration.this,
+                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = session.edit();
+                        editor.putInt("login", Integer.parseInt(IDNum));
+                        Intent intent =new Intent(Registration.this,MainActivity.class);
+                        startActivity(intent);
+
+                    }} catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -127,11 +138,9 @@ public class Registration extends AppCompatActivity {
         // below line is to make
         // a json object request.
         queue.add(request);
-        SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
-        SharedPreferences.Editor editor = session.edit();
-        editor.putInt("login", Integer.parseInt(IDNum));
-        Intent intent =new Intent(Registration.this,MainActivity.class);
-        startActivity(intent);
+
+
+
     }
 
 
@@ -143,5 +152,52 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    public void check_Email_Validation(String UserName, String IDNum,String PhoneNum,String Email ,String Password) {
+        String url = "https://emailvalidation.abstractapi.com/v1/?api_key=a703d1c9abc24588ab6fbf208d26d057&email=" +Email;
 
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url,
+                        null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject validationObj = response.getJSONObject("is_valid_format");
+                            String isValid=validationObj.getString("value");
+
+                            if (isValid.equals("true")){
+                                JSONObject verificationObj = response.getJSONObject("is_smtp_valid");
+                                String isVerify=verificationObj.getString("value");
+
+                                if (isVerify.equals("true")){
+
+                                    addPerson(UserName, IDNum,PhoneNum,Email ,Password);
+
+                                }
+                                else {
+                                    Toast.makeText(Registration.this,
+                                            "الرجاء إدخال إيميلك الصحيح", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else {
+                                Toast.makeText(Registration.this,
+                                        "الرجاء إدخال إيميلك الصحيح", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
+    }
 }

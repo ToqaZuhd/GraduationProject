@@ -145,7 +145,6 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
                             JSONObject jsonObject= new JSONObject(response);
                             imageName = jsonObject.getString("image");
-
                             if(!(imageName.isEmpty())){
                                 // decode base64 string
                                 byte[] bytes= Base64.decode(imageName,Base64.DEFAULT);
