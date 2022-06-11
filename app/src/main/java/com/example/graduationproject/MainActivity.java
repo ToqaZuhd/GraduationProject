@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-    public void reviewsOnClickBtn(View view) {
-        Intent intent = new Intent(this, StateOfPeople.class);
-        startActivity(intent);
-    }
+//    public void reviewsOnClickBtn(View view) {
+//        Intent intent = new Intent(this, StateOfPeople.class);
+//        startActivity(intent);
+//    }
 }

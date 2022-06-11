@@ -163,7 +163,7 @@ public class SignIn extends AppCompatActivity {
                     "ادخل الاإيميل", Toast.LENGTH_SHORT).show();
         }
         else{
-            String url = "http://10.0.2.2:82/GraduationProject/Search.php?email="+IDNum;
+            String url = "http://10.0.2.2/GraduationProject/Search.php?email="+IDNum;
             RequestQueue queue = Volley.newRequestQueue(SignIn.this);
             StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
                 @Override

@@ -1,6 +1,7 @@
 package com.example.graduationproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,7 +73,7 @@ public class Registration extends AppCompatActivity {
     }
 
     private void addPerson(String UserName, String IDNum,String PhoneNum,String Email ,String Password){
-        String url = "http://10.0.2.2:82/GraduationProject/AddUsers.php";
+        String url = "http://10.0.2.2/GraduationProject/AddUsers.php";
         RequestQueue queue = Volley.newRequestQueue(Registration.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -126,7 +127,10 @@ public class Registration extends AppCompatActivity {
         // below line is to make
         // a json object request.
         queue.add(request);
-        Intent intent =new Intent(Registration.this,SignIn.class);
+        SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
+        SharedPreferences.Editor editor = session.edit();
+        editor.putInt("login", Integer.parseInt(IDNum));
+        Intent intent =new Intent(Registration.this,MainActivity.class);
         startActivity(intent);
     }
 
@@ -135,5 +139,9 @@ public class Registration extends AppCompatActivity {
     public void btnClkForLogin(View view) {
         Intent intent =new Intent(Registration.this,SignIn.class);
         startActivity(intent);
+
+
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.graduationproject;
+/*package com.example.graduationproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -101,4 +101,4 @@ public class StateOfPeople extends AppCompatActivity {
         timelineRowsList.add(myRow);
 
     }
-}
+}*/

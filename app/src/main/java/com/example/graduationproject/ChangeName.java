@@ -49,7 +49,7 @@ public class ChangeName extends AppCompatActivity {
             }
            else{
 
-                String url = "http://10.0.2.2:82/GraduationProject/changes.php";
+                String url = "http://10.0.2.2/GraduationProject/changes.php";
                 RequestQueue queue = Volley.newRequestQueue(ChangeName.this);
                 StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
                     @Override

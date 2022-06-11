@@ -1,6 +1,6 @@
 <?php
 
-	
+	require("password.php");
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
 		// Get data
 		$user_name = isset($_POST['username']) ? $_POST['username'] : "";
@@ -22,7 +22,9 @@
 		} 
 		
 		
-		$sql = "insert into userdata (Name,userId,phoneNum,email,password,role) values ('" . $user_name . "','" . $IDNum . "','" . $phoneNum . "','" .$email. "','" . $enteredpassword . "','" . $role . "')";
+        $passwordHash = password_hash($enteredpassword, PASSWORD_DEFAULT);
+		
+		$sql = "insert into userdata (Name,userId,phoneNum,email,password,role) values ('" . $user_name . "','" . $IDNum . "','" . $phoneNum . "','" .$email. "','" . $passwordHash . "','" . $role . "')";
 		
 		$sql2="update userdata set image='" .$image. "' where userId='" .$IDNum. "'";
 	
@@ -30,7 +32,8 @@
 		if(empty($image)){
 		if ($conn->query($sql) === TRUE) {
 			$response['error'] = false;
-			$response['message'] = $user_name." added successfully!";
+			
+			$response['message'] = $passwordHash;
 		} else {
 			$response['error'] = true;
 			$response['message'] = "Error, " . $conn->error;
