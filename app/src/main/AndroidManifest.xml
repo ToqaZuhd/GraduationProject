@@ -18,17 +18,15 @@
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".DocumentGuestActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".guest.DocumentGuestActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".AboutAppGuest"
-            android:exported="false" />
+            android:name=".guest.AboutAppGuest"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Passenger_calendar"
             android:exported="true"
@@ -95,7 +93,8 @@
             android:exported="true" />
         <activity
             android:name=".OpeningTimesEmployee.WritePostEmployeeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".DaysAndTimesOpeningPassengerActivity"
             android:exported="true"
@@ -113,14 +112,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PointsCharger.chargePoints"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".cars"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarProvider.PostCar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".tickets_information"
             android:exported="true"
