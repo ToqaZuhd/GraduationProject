@@ -45,13 +45,9 @@ public class SignIn extends AppCompatActivity {
         if (session!=-1){
             Intent intent;
             if(role.equals("user")){
-                intent = new Intent(SignIn.this, postNews.class);
+                intent = new Intent(SignIn.this, MainActivity.class);
                 startActivity(intent);
 
-            }
-           else if(role.equals("guest")){
-                intent = new Intent(SignIn.this, StateOfPeopleGuest.class);
-                startActivity(intent);
             }
 
             else if(role.equals("CarProvider")){
@@ -221,5 +217,6 @@ public class SignIn extends AppCompatActivity {
 
         }
     }
+
 
 }

@@ -77,7 +77,7 @@ public class Registration extends AppCompatActivity {
     private void addPerson(String UserName, String IDNum,String PhoneNum,String Email ,String Password){
 
 
-        String url = "http://10.0.2.2:80/GraduationProject/AddUsers.php";
+        String url = "http://10.0.2.2/GraduationProject/AddUsers.php";
         RequestQueue queue = Volley.newRequestQueue(Registration.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

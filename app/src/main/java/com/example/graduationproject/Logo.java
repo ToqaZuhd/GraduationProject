@@ -29,7 +29,7 @@ public class Logo extends AppCompatActivity {
                 } finally
                 {
                     finish();
-                    Intent i = new Intent(Logo.this,postNews.class);
+                    Intent i = new Intent(Logo.this,Choices.class);
                     startActivity(i);
                 }
             }

@@ -18,12 +18,15 @@
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Choices"
+            android:exported="true" />
+        <activity
             android:name=".guest.StateOfPeopleGeuest"
             android:exported="true" />
         <activity
             android:name=".guest.DocumentGuestActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".StateOfPeople"
             android:exported="true"
@@ -35,7 +38,7 @@
         <activity
             android:name=".Passenger_calendar"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".chooseProfileImage"
             android:theme="@style/AppTheme.NoActionBar" />
