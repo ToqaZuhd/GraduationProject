@@ -27,7 +27,7 @@ public class DocumentGuestActivity extends AppCompatActivity implements Navigati
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("ألوثائق المطلوبة");
+        getSupportActionBar().setTitle("الوثائق المطلوبة");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
