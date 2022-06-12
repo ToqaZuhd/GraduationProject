@@ -21,8 +21,9 @@
             android:name=".Choices"
             android:exported="true" />
         <activity
-            android:name=".guest.StateOfPeopleGeuest"
-            android:exported="true" />
+            android:name=".guest.StateOfPeopleGuest"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".guest.DocumentGuestActivity"
             android:exported="true"

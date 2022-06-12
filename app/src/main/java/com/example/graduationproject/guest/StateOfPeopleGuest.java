@@ -46,7 +46,7 @@ public class StateOfPeopleGuest extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.state_of_people);
+        setContentView(R.layout.activity_state_of_people_geuest);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حالة الجسر");
@@ -159,7 +159,7 @@ public class StateOfPeopleGuest extends AppCompatActivity implements NavigationV
 
 
             case R.id.documentGuest_nav:
-                intent=new Intent(StateOfPeopleGuest.this, DocumentActivity.class);
+                intent=new Intent(StateOfPeopleGuest.this, DocumentGuestActivity.class);
                 startActivity(intent);
                 break;
 

@@ -65,7 +65,7 @@ public class AboutAppGuest extends AppCompatActivity implements NavigationView.O
 
 
             case R.id.documentGuest_nav:
-                intent=new Intent(AboutAppGuest.this, DocumentActivity.class);
+                intent=new Intent(AboutAppGuest.this, DocumentGuestActivity.class);
                 startActivity(intent);
                 break;
 
