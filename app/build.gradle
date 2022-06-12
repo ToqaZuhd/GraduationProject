@@ -52,5 +52,4 @@ dependencies {
     compile 'com.github.carlosmuvi:SegmentedProgressBar:0.8.1'
     compile 'com.github.qapqap:TimelineView:v1.6'
 
-
 }

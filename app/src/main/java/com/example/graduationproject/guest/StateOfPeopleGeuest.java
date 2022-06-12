@@ -1,4 +1,4 @@
-package com.example.graduationproject;
+package com.example.graduationproject.guest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,6 +18,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.example.graduationproject.DocumentActivity;
+import com.example.graduationproject.LogOut;
+import com.example.graduationproject.MainActivity;
+import com.example.graduationproject.MyTrips;
+import com.example.graduationproject.R;
+import com.example.graduationproject.Setting;
+import com.example.graduationproject.aboutApp;
+import com.example.graduationproject.profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.kofigyan.stateprogressbar.StateProgressBar;
@@ -28,7 +36,7 @@ import org.qap.ctimelineview.TimelineViewAdapter;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StateOfPeople extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class StateOfPeopleGuest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
 
     Toolbar toolbar;
@@ -56,28 +64,6 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-
-        // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId())
-                {
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.news:
-                        return true;
-                    case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),profile.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
 
 //        ProgressBar p1 = findViewById(R.id.progressBar1);
 //        ProgressBar p2 = findViewById(R.id.progressBar2);
@@ -160,21 +146,20 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         Intent intent;
         switch (item.getItemId()) {
 
-            case R.id.aboutApp_nav:
-                intent=new Intent(StateOfPeople.this, aboutApp.class);
-                startActivity(intent);
-                break;
-            case R.id.myTrips_nav:
-                intent=new Intent(StateOfPeople.this, MyTrips.class);
-                startActivity(intent);
-                break;
-            case R.id.setting_nav:
-                intent=new Intent(StateOfPeople.this, Setting.class);
+            case R.id.aboutAppGuest_nav:
+                intent=new Intent(StateOfPeopleGuest.this, AboutAppGuest.class);
                 startActivity(intent);
                 break;
 
-            case R.id.logOut_nav:
-                intent=new Intent(StateOfPeople.this, LogOut.class);
+            //here the state of people activity
+            case R.id.stateOfPeopleGuest_nav:
+                intent=new Intent(StateOfPeopleGuest.this, StateOfPeopleGuest.class);
+                startActivity(intent);
+                break;
+
+
+            case R.id.documentGuest_nav:
+                intent=new Intent(StateOfPeopleGuest.this, DocumentActivity.class);
                 startActivity(intent);
                 break;
 

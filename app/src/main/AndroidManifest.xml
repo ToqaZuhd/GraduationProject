@@ -18,24 +18,24 @@
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".guest.StateOfPeopleGeuest"
+            android:exported="true" />
+        <activity
             android:name=".guest.DocumentGuestActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".StateOfPeople"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".guest.AboutAppGuest"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Passenger_calendar"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
-
-            <!-- <intent-filter> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".chooseProfileImage"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -93,8 +93,7 @@
             android:exported="true" />
         <activity
             android:name=".OpeningTimesEmployee.WritePostEmployeeActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:exported="true" />
         <activity
             android:name=".DaysAndTimesOpeningPassengerActivity"
             android:exported="true"
@@ -112,16 +111,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PointsCharger.chargePoints"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:exported="true" />
         <activity
             android:name=".cars"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarProvider.PostCar"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:exported="true" />
         <activity
             android:name=".tickets_information"
             android:exported="true"

@@ -58,10 +58,10 @@ public class AboutAppGuest extends AppCompatActivity implements NavigationView.O
                 startActivity(intent);
                 break;
                 //here the state of people activity
-            /*case R.id.stateOfPeopleGuest_nav:
-                intent=new Intent(AboutAppGuest.this, Sta.class);
+            case R.id.stateOfPeopleGuest_nav:
+                intent=new Intent(AboutAppGuest.this, StateOfPeopleGuest.class);
                 startActivity(intent);
-                break;*/
+                break;
 
 
             case R.id.documentGuest_nav:
