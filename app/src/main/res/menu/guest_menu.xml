@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group>
+        <item
+            android:id="@+id/aboutAppGuest_nav"
+            android:title=""
+            app:actionLayout="@layout/designaboutapp"
+            />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/stateOfPeopleGuest_nav"
+            android:title=""
+            app:actionLayout="@layout/state_of_people_design"
+            />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/documentGuest_nav"
+            android:title=""
+            app:actionLayout="@layout/designdocument"
+            />
+    </group>
+
+</menu>

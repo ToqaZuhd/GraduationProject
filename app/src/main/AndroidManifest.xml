@@ -17,13 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StateOfPeople"></activity>
         <activity
-            android:name=".Passenger_calendar"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".DocumentGuestActivity"
+            android:exported="true">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AboutAppGuest"
+            android:exported="false" />
+        <activity
+            android:name=".Passenger_calendar"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- <intent-filter> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".chooseProfileImage"
@@ -89,7 +102,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OpeningTimesEmployee.DaysAndTimesOpeningEmployeeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TripMapActivity"
             android:exported="true" />
@@ -120,6 +134,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

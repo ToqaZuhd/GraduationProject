@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +18,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.Navigation;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,8 +33,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Model.carOOB;
 import com.example.graduationproject.R;
+import com.example.graduationproject.aboutApp;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +48,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PostCar extends AppCompatActivity {
+public class PostCar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     byte compressed_string[]  = new byte[1024];
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload ;
@@ -52,12 +62,29 @@ public class PostCar extends AppCompatActivity {
     String sImage;
     carOOB car = new carOOB();
 
+    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_car);
         setUpViews();
-        getSupportActionBar().setTitle("إدراج سيارة");
+       // getSupportActionBar().setTitle("إدراج سيارة");
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("عن التطبيق");
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
     }
 
@@ -230,5 +257,20 @@ public class PostCar extends AppCompatActivity {
         car.setCar_price(Integer.parseInt(car_price.getText().toString().trim()));
         car.setCar_provider(car_provider.getText().toString().trim());
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.logOut_nav:
+                intent=new Intent(PostCar.this, LogOut.class);
+                startActivity(intent);
+                break;
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+
+        }
 
 }

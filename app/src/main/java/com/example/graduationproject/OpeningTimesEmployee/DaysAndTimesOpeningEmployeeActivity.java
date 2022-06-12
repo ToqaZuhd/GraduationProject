@@ -2,10 +2,17 @@ package com.example.graduationproject.OpeningTimesEmployee;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +22,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.CarProvider.PostCar;
+import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Model.PostEmployee;
 import com.example.graduationproject.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,15 +36,33 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity {
+public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private RequestQueue queue;
+
+    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_and_times_opening_employee);
-        getSupportActionBar().setTitle("إضافة موعد أو معلومة");
+        //getSupportActionBar().setTitle("إضافة موعد أو معلومة");
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("عن التطبيق");
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
         queue = Volley.newRequestQueue(this);
         getPosts();
@@ -84,4 +113,20 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity {
         Intent intent = new Intent(DaysAndTimesOpeningEmployeeActivity.this, WritePostEmployeeActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.logOut_nav:
+                intent=new Intent(DaysAndTimesOpeningEmployeeActivity.this, LogOut.class);
+                startActivity(intent);
+                break;
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+
+    }
+
 }
