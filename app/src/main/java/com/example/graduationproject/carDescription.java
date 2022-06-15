@@ -216,6 +216,9 @@ public class carDescription extends AppCompatActivity {
                     if (jsonObject.getString("error").equals("false")) {
                         Toast.makeText(carDescription.this,
                                 jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(carDescription.this, successfullOperation.class);
+                        startActivity(intent);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
