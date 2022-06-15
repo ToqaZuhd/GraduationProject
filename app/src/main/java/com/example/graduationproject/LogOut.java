@@ -20,7 +20,7 @@ public class LogOut extends AppCompatActivity {
         editor.putString("role","");
         editor.apply();
 
-        Intent intent=new Intent(LogOut.this,SignIn.class);
+        Intent intent=new Intent(LogOut.this,Choices.class);
         startActivity(intent);
 
 

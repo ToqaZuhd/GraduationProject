@@ -8,12 +8,11 @@
     android:fitsSystemWindows="true"
     tools:context=".guest.DocumentGuestActivity"
     tools:openDrawer="start">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/zumthor"
-    android:gravity="right"
-    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,69 +20,103 @@
         android:background="@color/navy_blue"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:layout_constraintBottom_toTopOf="@+id/linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="52dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="الوثائق المطلوبة"
-        android:textColor="@color/navy_blue"
-        android:textSize="22dp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/zumthor"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-    <TextView
+            <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text=">> الهوية"
-        android:textColor="@color/navy_blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="52dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="الوثائق المطلوبة"
+                android:textColor="@color/navy_blue"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
-    <TextView
+            <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text=">> جواز السفر"
-        android:textColor="@color/navy_blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text=">> الهوية"
+                android:textColor="@color/navy_blue"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    <TextView
+            <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text=">> بطاقة الجسور"
-        android:textColor="@color/navy_blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text=">> جواز السفر"
+                android:textColor="@color/navy_blue"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-    <TextView
+            <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text=">> فحص يثبت أنك سليم من فايروس كورونا (COVID-19) أو شهادة التطعيم"
-        android:textColor="@color/navy_blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text=">> بطاقة الجسور"
+                android:textColor="@color/navy_blue"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-</LinearLayout>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text=">> فحص يثبت أنك سليم من فايروس كورونا (COVID-19) أو شهادة التطعيم"
+                android:textColor="@color/navy_blue"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+ <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/blue"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear"
+            app:menu="@menu/guest_navigation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <com.google.android.material.navigation.NavigationView
 
         android:id="@+id/nav_view"
@@ -92,4 +125,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/guest_menu" />
+
+
 </androidx.drawerlayout.widget.DrawerLayout>

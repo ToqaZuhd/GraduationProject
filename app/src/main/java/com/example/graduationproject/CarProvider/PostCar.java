@@ -35,9 +35,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.LogOut;
+import com.example.graduationproject.Logo;
 import com.example.graduationproject.Model.carOOB;
 import com.example.graduationproject.R;
 import com.example.graduationproject.aboutApp;
+import com.example.graduationproject.cars;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -83,17 +85,9 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
        // getSupportActionBar().setTitle("إدراج سيارة");
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("عن التطبيق");
+        getSupportActionBar().setTitle("إضافة سيارة");
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        nav();
 
     }
 
@@ -182,25 +176,29 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
     }
 
     public void post_car_onClick(View view) {
-        if(car_number.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال رقم السيارة"), Toast.LENGTH_SHORT).show();
-        }
-        else if(car_type.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال نوع السيارة"), Toast.LENGTH_SHORT).show();
-        }
-        else if(car_price.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال سعر السيارة"), Toast.LENGTH_SHORT).show();
-        }
-        else if(seats_number.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال عدد المقاعد"), Toast.LENGTH_SHORT).show();
-        }
-        else if(gear_type.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
-        }
-        else{
-            getCar();
-            insertCar();
-        }
+        Intent intent = new Intent(this, manage_reservations.class);
+        startActivity(intent);
+//        if(car_number.getText().toString().isEmpty()){
+//            Toast.makeText(PostCar.this,("الرجاء ادخال رقم السيارة"), Toast.LENGTH_SHORT).show();
+//        }
+//        else if(car_type.getText().toString().isEmpty()){
+//            Toast.makeText(PostCar.this,("الرجاء ادخال نوع السيارة"), Toast.LENGTH_SHORT).show();
+//        }
+//        else if(car_price.getText().toString().isEmpty()){
+//            Toast.makeText(PostCar.this,("الرجاء ادخال سعر السيارة"), Toast.LENGTH_SHORT).show();
+//        }
+//        else if(seats_number.getText().toString().isEmpty()){
+//            Toast.makeText(PostCar.this,("الرجاء ادخال عدد المقاعد"), Toast.LENGTH_SHORT).show();
+//        }
+//        else if(gear_type.getText().toString().isEmpty()){
+//            Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+////            getCar();
+////            insertCar();
+//
+//
+//        }
     }
 
 
@@ -275,19 +273,60 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
 
     }
 
+
+
+    public void nav (){
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.addCar:
+                        startActivity(new Intent(getApplicationContext(),PostCar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.manage_reservations:
+                        startActivity(new Intent(getApplicationContext(),manage_reservations.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                }
+                return false;
+            }
+        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
+
             case R.id.logOut_nav:
-                intent=new Intent(PostCar.this, LogOut.class);
+                intent=new Intent(PostCar.this, Logo.class);
                 startActivity(intent);
                 break;
+
+
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
 
-        }
 
 }

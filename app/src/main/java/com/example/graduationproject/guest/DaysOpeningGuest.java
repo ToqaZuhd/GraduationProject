@@ -1,0 +1,179 @@
+package com.example.graduationproject.guest;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.DataCard;
+import com.example.graduationproject.Model.PostEmployee;
+import com.example.graduationproject.Passenger_calendar;
+import com.example.graduationproject.R;
+import com.example.graduationproject.Registration;
+import com.example.graduationproject.SignIn;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DaysOpeningGuest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RequestQueue queue;
+    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.days_opening_guest);
+
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("أيام و أوقات دوام الجسر");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        queue = Volley.newRequestQueue(this);
+        getPosts();
+        nav();
+    }
+
+
+
+    public void getPosts() {
+        List<PostEmployee> employeeList = new ArrayList<>();
+        String BASE_URL = "http://10.0.2.2/GraduationProject/getPostDataEmployee.php";
+        StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray employeePosts = new JSONArray(response);
+                            for (int i = 0; i < employeePosts.length(); i++) {
+                                JSONObject jsonObject = employeePosts.getJSONObject(i);
+                                int id = jsonObject.getInt("id");
+                                String date = jsonObject.getString("date");
+                                String post = jsonObject.getString("post");
+
+
+                                employeeList.add(new PostEmployee(id, date, post));
+
+                            }
+                            RecyclerView recycler = findViewById(R.id.post_recyclerPass);
+                            recycler.setLayoutManager(new LinearLayoutManager(DaysOpeningGuest.this));
+                            DataCard adapter = new DataCard(DaysOpeningGuest.this, employeeList);
+
+                            recycler.setAdapter(adapter);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(DaysOpeningGuest.this, error.toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
+
+
+    }
+
+    public void showCalendarForPassenger(View view) {
+        Intent intent = new Intent(this, Passenger_calendar.class);
+        startActivity(intent);
+    }
+
+    public void nav (){
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.stateOfPeople:
+                        startActivity(new Intent(getApplicationContext(),StateOfPeopleGuest.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.requiredDocs:
+                        startActivity(new Intent(getApplicationContext(),DocumentGuestActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.openingTimes:
+                        startActivity(new Intent(getApplicationContext(), DaysOpeningGuest.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.aboutAppGuest_nav:
+                intent=new Intent(DaysOpeningGuest.this, AboutAppGuest.class);
+                startActivity(intent);
+                break;
+            case R.id.login:
+                intent=new Intent(DaysOpeningGuest.this, SignIn.class);
+                startActivity(intent);
+                break;
+            case R.id.SignUp:
+                intent=new Intent(DaysOpeningGuest.this, Registration.class);
+                startActivity(intent);
+                break;
+
+
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+}

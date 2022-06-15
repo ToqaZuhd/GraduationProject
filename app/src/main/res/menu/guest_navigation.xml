@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/stateOfPeople"
+        android:icon="@drawable/users_group"
+        android:title="حالة الجسر" />
+
+    <item
+        android:id="@+id/requiredDocs"
+        android:icon="@drawable/ic_baseline_newspaper_24"
+        android:title="الوثائق المطلوبة" />
+
+    <item
+        android:id="@+id/openingTimes"
+        android:icon="@drawable/booking"
+        android:title="أيام دوام الجسر" />
+
+
+
+
+
+</menu>

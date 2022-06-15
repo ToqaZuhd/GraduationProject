@@ -14,18 +14,20 @@
 
     <group>
         <item
-            android:id="@+id/stateOfPeopleGuest_nav"
+            android:id="@+id/login"
             android:title=""
-            app:actionLayout="@layout/state_of_people_design"
+            app:actionLayout="@layout/designlogin"
             />
     </group>
 
     <group>
         <item
-            android:id="@+id/documentGuest_nav"
+            android:id="@+id/SignUp"
             android:title=""
-            app:actionLayout="@layout/designdocument"
+            app:actionLayout="@layout/sign_up_design"
             />
     </group>
+
+
 
 </menu>
