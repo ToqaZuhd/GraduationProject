@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
+    android:onClick="go"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="2dp">
 
@@ -51,25 +52,6 @@
             android:gravity="center"
             android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/car_provider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp"
-            android:gravity="center"
-            android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="#18325D"
-            android:text="حجز السيارة"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            card_view:backgroundTint="#18325D" />
     </GridLayout>
 </androidx.cardview.widget.CardView>

@@ -17,13 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
+        <activity android:name=".carDescription"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Choices"
             android:exported="true" />
         <activity
             android:name=".guest.StateOfPeopleGuest"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".guest.DocumentGuestActivity"
             android:exported="true"
@@ -122,7 +124,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarProvider.PostCar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".tickets_information"
             android:exported="true"

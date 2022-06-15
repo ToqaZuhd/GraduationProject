@@ -2,6 +2,7 @@ package com.example.graduationproject.CarProvider;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -25,7 +26,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.Navigation;
+//import androidx.navigation.Navigation;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -56,11 +57,15 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
     EditText car_number;
     EditText car_type;
     EditText car_price;
-    EditText car_provider;
+    EditText seats_number;
+    EditText gear_type;
     Button post_car;
     Bitmap bitmap;
     String sImage;
     carOOB car = new carOOB();
+    SharedPreferences preferences;
+    private int providerID;
+
 
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -71,6 +76,10 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_car);
         setUpViews();
+
+        preferences=getSharedPreferences("session",MODE_PRIVATE);
+        providerID=preferences.getInt("login",-1);
+
        // getSupportActionBar().setTitle("إدراج سيارة");
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,7 +103,8 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
         uploadPhoto = findViewById(R.id.uploadPhoto);
         car_type = findViewById(R.id.car_type);
         car_price = findViewById(R.id.car_price);
-        car_provider = findViewById(R.id.car_provider);
+        seats_number = findViewById(R.id.seats_number);
+        gear_type = findViewById(R.id.gear_type);
         post_car = findViewById(R.id.post_car);
     }
 
@@ -181,8 +191,11 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
         else if(car_price.getText().toString().isEmpty()){
             Toast.makeText(PostCar.this,("الرجاء ادخال سعر السيارة"), Toast.LENGTH_SHORT).show();
         }
-        else if(car_provider.getText().toString().isEmpty()){
-            Toast.makeText(PostCar.this,("الرجاء ادخال اسم المزود"), Toast.LENGTH_SHORT).show();
+        else if(seats_number.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال عدد المقاعد"), Toast.LENGTH_SHORT).show();
+        }
+        else if(gear_type.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
         }
         else{
             getCar();
@@ -237,7 +250,9 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
                 params.put("car_image", car.getCarImage()+"");
                 params.put("car_type", car.getCar_type()+"");
                 params.put("car_price", car.getCar_price()+"");
-                params.put("car_provider", car.getCar_provider()+"");
+                params.put("seats_number", car.getSeats_number()+"");
+                params.put("gear_type", car.getGear_type()+"");
+                params.put("providerID", providerID+"");
 
 
                 // at last we are returning our params.
@@ -255,7 +270,9 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
         car.setCarImage(sImage);
         car.setCar_type(car_type.getText().toString().trim());
         car.setCar_price(Integer.parseInt(car_price.getText().toString().trim()));
-        car.setCar_provider(car_provider.getText().toString().trim());
+        car.setSeats_number(Integer.parseInt(seats_number.getText().toString().trim()));
+        car.setGear_type(gear_type.getText().toString().trim());
+
     }
 
     @Override

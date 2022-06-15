@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.CarProvider.PostCar;
 import com.example.graduationproject.Model.user;
 
 import org.json.JSONException;
@@ -42,6 +43,12 @@ public class SignIn extends AppCompatActivity {
             Intent intent;
             if(role.equals("user")){
                 intent = new Intent(SignIn.this, postNews.class);
+                startActivity(intent);
+
+            }
+
+            if(role.equals("car_provider")){
+                intent = new Intent(SignIn.this, PostCar.class);
                 startActivity(intent);
 
             }
@@ -128,6 +135,12 @@ public class SignIn extends AppCompatActivity {
                         Intent intent;
                         if (role.equals("user")){
                             intent = new Intent(SignIn.this, MainActivity.class);
+                            startActivity(intent);
+
+                        }
+
+                        else if (role.equals("car_provider")){
+                            intent = new Intent(SignIn.this, PostCar.class);
                             startActivity(intent);
 
                         }

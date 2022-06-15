@@ -1,5 +1,6 @@
 package com.example.graduationproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,16 +35,16 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>{
     private String [] carsImages;
     private String[]carsTypes;
     private int[] carsPrices;
-    private String[]carsProviders;
+
+    private Context mContext;
 
 
-
-    public carsAdapter(int[] carsNumbers, String[] carsImages, String[] carsTypes, int[] carsPrices, String[] carsProviders) {
+    public carsAdapter(int[] carsNumbers, String[] carsImages, String[] carsTypes, int[] carsPrices,Context context ) {
         this.carsNumbers = carsNumbers;
         this.carsImages = carsImages;
         this.carsTypes = carsTypes;
         this.carsPrices = carsPrices;
-        this.carsProviders = carsProviders;
+        this.mContext = context;
     }
 
     @Override
@@ -59,13 +60,13 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         CardView cardView = holder.cardView;
 //        carOOB car = new carOOB();
-
+//
 //        for(int i = 0; i< items.length ; i++){
 //            if(items[i].getImageID()==imageIds[position]){
 //                item = items[i];
 //            }
 //        }
-//
+////
 //        ImageView imageView = (ImageView) cardView.findViewById(R.id.image);
 //        Drawable dr = ContextCompat.getDrawable(cardView.getContext(), car.getCarImage());
 //        imageView.setImageDrawable(dr);
@@ -89,11 +90,21 @@ public class carsAdapter extends RecyclerView.Adapter<carsAdapter.ViewHolder>{
         TextView txt_carPrice = (TextView)cardView.findViewById(R.id.car_price);
         txt_carPrice.setText(" السعر : "+carsPrices[position] +" دينار أردني لليوم الواحد");
 
-        TextView txt_carProvider = (TextView)cardView.findViewById(R.id.car_provider);
-        txt_carProvider.setText("اسم المزود : "+carsProviders[position] );
+
+        cardView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mContext,carDescription.class);
+                intent.putExtra("carID", carsNumbers[position]);
+                mContext.startActivity(intent);
+            }
+        });
 
 //        carOOB finalCar = car;
     }
+
+
 
     @Override
     public int getItemCount() {

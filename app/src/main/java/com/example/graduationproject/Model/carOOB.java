@@ -5,17 +5,21 @@ public class carOOB {
     private String carImage;
     private String car_type;
     private int car_price;
-    private String car_provider;
+    private int seats_number;
+    private String gear_type;
+    private int providerID;
 
     public carOOB() {
     }
 
-    public carOOB(int car_number, String carImage, String car_type, int car_price, String car_provider) {
+    public carOOB(int car_number, String carImage, String car_type, int car_price, int seats_number, String gear_type, int providerID) {
         this.car_number = car_number;
         this.carImage = carImage;
         this.car_type = car_type;
         this.car_price = car_price;
-        this.car_provider = car_provider;
+        this.seats_number = seats_number;
+        this.gear_type = gear_type;
+        this.providerID = providerID;
     }
 
     public int getCar_number() {
@@ -50,12 +54,28 @@ public class carOOB {
         this.car_price = car_price;
     }
 
-    public String getCar_provider() {
-        return car_provider;
+    public int getSeats_number() {
+        return seats_number;
     }
 
-    public void setCar_provider(String car_provider) {
-        this.car_provider = car_provider;
+    public void setSeats_number(int seats_number) {
+        this.seats_number = seats_number;
+    }
+
+    public String getGear_type() {
+        return gear_type;
+    }
+
+    public void setGear_type(String gear_type) {
+        this.gear_type = gear_type;
+    }
+
+    public int getProviderID() {
+        return providerID;
+    }
+
+    public void setProviderID(int providerID) {
+        this.providerID = providerID;
     }
 
     @Override
@@ -65,7 +85,9 @@ public class carOOB {
                 ", carImage='" + carImage + '\'' +
                 ", car_type='" + car_type + '\'' +
                 ", car_price=" + car_price +
-                ", car_provider='" + car_provider + '\'' +
+                ", seats_number=" + seats_number +
+                ", gear_type=" + gear_type +
+                ", providerID=" + providerID +
                 '}';
     }
 }

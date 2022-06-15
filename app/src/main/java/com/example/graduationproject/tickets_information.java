@@ -157,6 +157,8 @@ public class tickets_information extends AppCompatActivity implements Navigation
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;

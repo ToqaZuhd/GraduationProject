@@ -65,7 +65,7 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("سيارات اجرة");
-
+        carsArray.clear();
         getcars();
 
         nav();
@@ -91,10 +91,10 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
                                 car.setCarImage(info[1].trim());
                                 car.setCar_type(info[2].trim());
                                 car.setCar_price(Integer.parseInt(info[3].trim()));
-                                car.setCar_provider(info[4].trim());
+                                car.setSeats_number(Integer.parseInt(info[4].trim()));
+                                car.setGear_type(info[5].trim());
+                                car.setProviderID(Integer.parseInt(info[6].trim()));
                                 carsArray.add(car);
-
-
 
 
                             }
@@ -107,18 +107,16 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
                         String[] cars_Images = new String[carsArray.size()];
                         String[] cars_types = new String[carsArray.size()];
                         int[] cars_prices = new int[carsArray.size()];
-                        String [] cars_providers = new String [carsArray.size()];
 
                         for(int i = 0; i<carsArray.size();i++){
                             cars_numbers[i] = carsArray.get(i).getCar_number();
                             cars_Images[i] = carsArray.get(i).getCarImage();
                             cars_types[i] = carsArray.get(i).getCar_type();
                             cars_prices[i] = carsArray.get(i).getCar_price();
-                            cars_providers[i] = carsArray.get(i).getCar_provider();
                         }
 
                         recycler.setLayoutManager(new LinearLayoutManager(cars.this));
-                        carsAdapter adapter = new carsAdapter(cars_numbers,cars_Images, cars_types, cars_prices,cars_providers);
+                        carsAdapter adapter = new carsAdapter(cars_numbers,cars_Images, cars_types, cars_prices,cars.this);
                         recycler.setAdapter(adapter);
 
 

@@ -89,15 +89,28 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/car_provider"
+            android:id="@+id/seats_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:ems="10"
             android:gravity="center"
-            android:hint="اسم المزود"
-            android:inputType="textPersonName" />
+            android:hint="عدد المقاعد"
+            android:inputType="textPersonName"
+            />
+
+        <EditText
+            android:id="@+id/gear_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="نوع الجير"
+            android:inputType="textPersonName"
+            />
 
         <Button
             android:id="@+id/post_car"

@@ -3,8 +3,11 @@ package com.example.graduationproject;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -56,6 +59,9 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
     private RequestQueue queue;
     int scoreNum;
     Trip trip = new Trip();
+
+    int ticketNumber;
+
 
 
 
@@ -218,7 +224,11 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
         Random rnd = new Random();
 
-        int ticketNumber = rnd.nextInt(99999);
+        ticketNumber = rnd.nextInt(99999);
+
+
+        Intent intent = new Intent(buy_tickets.this,carDescription.class);
+        intent.putExtra("TicketID", ticketNumber);
 
         trip.setPassengerID(userID);
         trip.setTicketID(ticketNumber);
@@ -280,6 +290,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
                 params.put("TripDate", trip.getTripDate()+"");
                 params.put("rewardPoints", trip.getRewardPoints()+"");
 
+
                 // at last we are returning our params.
                 return params;
             }
@@ -288,6 +299,43 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
         // a json object request.
         queue.add(request);
 
+    }
+
+    void getTripID(){
+        queue = Volley.newRequestQueue(buy_tickets.this);
+        String BASE_URL = "http://10.0.2.2/graduationProject/gettripid.php?id="+trip.getTicketID();
+        StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+                            JSONObject jsonObject= new JSONObject(response);
+                            String tripID = jsonObject.getString("TripID");
+                            trip.setTripID(Integer.parseInt(tripID));
+
+                            System.out.println(tripID);
+                            SharedPreferences session = getSharedPreferences("session",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = session.edit();
+                            editor.putInt("TripID", trip.getTripID());
+                            editor.apply();
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(buy_tickets.this, error.toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
     }
 
 
@@ -312,8 +360,13 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
                                             updateScore();
                                             makeTrip();
+
                                             System.out.println(trip);
                                             insertTrip();
+                                            getTripID();
+
+
+
                                             Intent intent = new Intent(buy_tickets.this, tickets_information.class);
                                             int newScore = scoreNum-total+rewardPoints();
                                             intent.putExtra("score",newScore +"");
