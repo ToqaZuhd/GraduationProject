@@ -21,7 +21,7 @@
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		} 
-		$sql = "select * from userdata where email = '" . $email . "'";
+		$sql = "select * from userdata where email = '" . $email . "' and password= '" . $passworduser ."' ";
 		
 		$sql2 = "select password,phoneNum from userdata where email = '" . $email . "'";
 		
@@ -46,21 +46,15 @@
 		$result = $conn->query($sql);
 		$row =mysqli_fetch_assoc($result);    
 		
-		
 		if(empty($row)){
 			$response['error'] = true;
-			$response['message']="الإيميل غير صحيح ";
+			$response['message']="الإيميل أو كلمة السر غير صحيح ";
 		}
 		else{
-			if(password_verify($passworduser, $row['password'])){
 			$response['error'] = false;
 			$response['id']=$row['userId'];
 			$response['role']=$row['role'];
-			}
-			else{
-			$response['error'] = true;
-			$response['message']="كلمة السر غير صحيحة";
-		}
+			
 		}
 		
 		}

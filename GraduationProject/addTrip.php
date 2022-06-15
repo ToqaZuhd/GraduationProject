@@ -28,6 +28,7 @@
 
 		if ($conn->query($sql) === TRUE) {
 			$response['error'] = false;
+			$response['message'] = "تمت العملية بنجاح";
 		} else {
 			$response['error'] = true;
 			$response['message'] = "Error, " . $conn->error;

@@ -5,7 +5,9 @@
 		$car_image = isset($_POST['car_image']) ? $_POST['car_image'] : "";
 		$car_type = isset($_POST['car_type']) ? $_POST['car_type'] : "";
 		$car_price = isset($_POST['car_price']) ? $_POST['car_price'] : "";
-		$car_provider = isset($_POST['car_provider']) ? $_POST['car_provider'] : "";
+		$seats_number = isset($_POST['seats_number']) ? $_POST['seats_number'] : "";
+		$gear_type = isset($_POST['gear_type']) ? $_POST['gear_type'] : "";
+		$providerID = isset($_POST['providerID']) ? $_POST['providerID'] : "";
 
 		$server_name = "localhost";
 		$username = "root";
@@ -17,7 +19,7 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "insert into car (car_number, car_image, car_type, car_price, car_provider) values('".$car_number."','".$car_image."','".$car_type."','". $car_price . "','" . $car_provider . "')" ;
+		$sql = "insert into car (car_number, car_image, car_type, car_price, seats_number, gear_type, providerID , status) values('".$car_number."','".$car_image."','".$car_type."','". $car_price . "','" . $seats_number . "','" . $gear_type . "','" . $providerID . "' , 'available')" ;
 
 		if ($conn->query($sql) === TRUE) {
 			$response['error'] = false;
