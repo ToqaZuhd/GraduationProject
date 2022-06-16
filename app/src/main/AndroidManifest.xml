@@ -142,7 +142,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PointsCharger.chargePoints"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".cars"
             android:exported="true"

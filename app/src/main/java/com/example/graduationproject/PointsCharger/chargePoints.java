@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,10 +22,22 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.CarProvider.PostCar;
 import com.example.graduationproject.LogOut;
+import com.example.graduationproject.Model.Passenger;
+import com.example.graduationproject.OpeningTimesEmployee.WritePostEmployeeActivity;
 import com.example.graduationproject.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,6 +46,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 public class chargePoints extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -49,7 +64,7 @@ public class chargePoints extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("عن التطبيق");
+        getSupportActionBar().setTitle("شحن نقاط");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
@@ -70,97 +85,64 @@ public class chargePoints extends AppCompatActivity implements NavigationView.On
 
 
     public void chargePoints(View view) {
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        String restUrl = "http://10.0.2.2/GraduationProject/updatePassengerScore.php";
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.INTERNET},
-                    123);
-
-        } else {
-            SendUpdateRequest runner = new SendUpdateRequest();
-            runner.execute(restUrl);
-        }
+        addPoints();
     }
 
-//    Passenger getPassengerData (){
-//        Passenger passenger = new Passenger();
-//        passenger.setID(Integer.parseInt(passengerID.getText().toString().trim()));
-//        int score = passenger.getScore()+Integer.parseInt(pointsToCharge.getText().toString().trim());
-//        System.out.println(score);
-//        passenger.setScore(score);
-//
-//        return passenger;
-//    }
 
-    private String processRequest(String restUrl) throws UnsupportedEncodingException {
+    private void addPoints() {
+        String url = "http://10.0.2.2/GraduationProject/updateScore.php";
+        RequestQueue queue = Volley.newRequestQueue(chargePoints.this);
+        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
 
-        String data = URLEncoder.encode("ID", "UTF-8") + "="
-                + URLEncoder.encode(passengerID.getText().toString().trim(), "UTF-8");
+                    JSONObject jsonObject = new JSONObject(response);
 
-        data += "&" + URLEncoder.encode("score", "UTF-8") + "="
-                + URLEncoder.encode(pointsToCharge.getText().toString().trim(), "UTF-8");
+                    if (response.trim().equals("failed")) {
+                        Toast.makeText(chargePoints.this, "رقم الهوية غير موجود", Toast.LENGTH_LONG).show();
+                        passengerID.setError("الرجاء إدخال رقم هوية صحيح");
+
+                    } else {
+                        Toast.makeText(chargePoints.this, "تم إضافة النقاط الى رصيد المستخدم بنجاح", Toast.LENGTH_LONG).show();
+                    }
 
 
-        String text = "";
-        BufferedReader reader=null;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-        // Send data
-        try
-        {
-
-            // Defined URL  where to send data
-            URL url = new URL(restUrl);
-
-            // Send POST data request
-
-            URLConnection conn = url.openConnection();
-            conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write( data );
-            wr.flush();
-
-            // Get the server response
-
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line = "";
-
-            // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
-                // Append server response in string
-                sb.append(line + "\n");
             }
 
-
-            text = sb.toString();
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-
-                reader.close();
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(chargePoints.this,
+                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/x-www-form-urlencoded; charset=UTF-8";
             }
 
-            catch(Exception ex) {
-                ex.printStackTrace();
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("score",pointsToCharge.getText().toString().trim() );
+                params.put("userId",passengerID.getText().toString().trim() );
+
+
+
+                return params;
             }
-        }
-
-        // Show response on activity
-        return text;
-
+        };
+        queue.add(request);
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -178,28 +160,6 @@ public class chargePoints extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private class SendUpdateRequest extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            try {
-                return processRequest(urls[0]);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            return "";
-        }
-        @Override
-        protected void onPostExecute(String result) {
-            System.out.println("result : "+result);
-            if (result.trim().equals("failed")) {
-                Toast.makeText(chargePoints.this, "رقم الهوية غير موجود", Toast.LENGTH_LONG).show();
-                passengerID.setError("الرجاء إدخال رقم هوية صحيح");
 
-            } else {
-                Toast.makeText(chargePoints.this, "تم إضافة النقاط الى رصيد المستخدم بنجاح", Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
 
 }

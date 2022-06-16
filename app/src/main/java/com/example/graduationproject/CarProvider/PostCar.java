@@ -176,29 +176,28 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
     }
 
     public void post_car_onClick(View view) {
-        Intent intent = new Intent(this, manage_reservations.class);
-        startActivity(intent);
-//        if(car_number.getText().toString().isEmpty()){
-//            Toast.makeText(PostCar.this,("الرجاء ادخال رقم السيارة"), Toast.LENGTH_SHORT).show();
-//        }
-//        else if(car_type.getText().toString().isEmpty()){
-//            Toast.makeText(PostCar.this,("الرجاء ادخال نوع السيارة"), Toast.LENGTH_SHORT).show();
-//        }
-//        else if(car_price.getText().toString().isEmpty()){
-//            Toast.makeText(PostCar.this,("الرجاء ادخال سعر السيارة"), Toast.LENGTH_SHORT).show();
-//        }
-//        else if(seats_number.getText().toString().isEmpty()){
-//            Toast.makeText(PostCar.this,("الرجاء ادخال عدد المقاعد"), Toast.LENGTH_SHORT).show();
-//        }
-//        else if(gear_type.getText().toString().isEmpty()){
-//            Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-////            getCar();
-////            insertCar();
-//
-//
-//        }
+
+        if(car_number.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال رقم السيارة"), Toast.LENGTH_SHORT).show();
+        }
+        else if(car_type.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال نوع السيارة"), Toast.LENGTH_SHORT).show();
+        }
+        else if(car_price.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال سعر السيارة"), Toast.LENGTH_SHORT).show();
+        }
+        else if(seats_number.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال عدد المقاعد"), Toast.LENGTH_SHORT).show();
+        }
+        else if(gear_type.getText().toString().isEmpty()){
+            Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
+        }
+        else{
+//            getCar();
+//            insertCar();
+
+
+        }
     }
 
 

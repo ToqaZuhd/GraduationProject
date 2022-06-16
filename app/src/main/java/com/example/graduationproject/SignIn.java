@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.CarProvider.PostCar;
 import com.example.graduationproject.Model.user;
+import com.example.graduationproject.PointsCharger.chargePoints;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -144,6 +145,13 @@ public class SignIn extends AppCompatActivity {
                             startActivity(intent);
 
                         }
+
+                        else if (role.equals("points_charger")){
+                            intent = new Intent(SignIn.this, chargePoints.class);
+                            startActivity(intent);
+
+                        }
+
 //                        else {
 //                            intent = new Intent(SignIn.this, EmployeeResRoom.class);
 //                        }

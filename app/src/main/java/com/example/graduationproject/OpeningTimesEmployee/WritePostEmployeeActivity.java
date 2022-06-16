@@ -39,6 +39,8 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     EditText edtPost;
     TextView postDateEdt;
     Button chooseDate;
+    Calendar calendar = Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
         edtPost = findViewById(R.id.PostEmployeeEdt);
         chooseDate = findViewById(R.id.chooseDate);
         Intent intent = getIntent();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
        /* if (intent != null) {
             numMethod = 1;
             idPost = intent.getStringExtra("id");
@@ -67,22 +71,27 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
             prevPost = intent.getStringExtra("prevPost");
             edtPost.setText(prevPost);
         }
-        selectDate();
+
     }
 
-    public void selectDate() {
-        DatePickerDialog.OnDateSetListener setListener;
-        Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
-        chooseDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    public void selectDate( View view) {
+        DatePickerDialog.OnDateSetListener setListener;
+
+        final int year2 = calendar.get(Calendar.YEAR);
+        final int month2 = calendar.get(Calendar.MONTH);
+        final int day2 = calendar.get(Calendar.DAY_OF_MONTH);
+
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(WritePostEmployeeActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
                         month = month + 1;
                         String date = "";
                         if (String.valueOf(month).length() == 1 && String.valueOf(day).length() == 1)
@@ -99,11 +108,12 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
 
 
                     }
-                }, year, month, day);
+                }, year2, month2, day2);
                 datePickerDialog.show();
-            }
-        });
+
     }
+
+
 
     public void btnClkPostByEm(View view) {
 
@@ -221,5 +231,6 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
         };
         queue.add(request);
     }
+
 
 }

@@ -30,7 +30,7 @@
         android:backgroundTint="@color/navy_blue"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center_horizontal"
-        android:onClick="btnClkPostByEm"
+        android:onClick="selectDate"
         android:text="إختيار التاريخ"
         android:textColor="@color/zumthor"
         android:textSize="20dp"
@@ -44,6 +44,7 @@
         android:layout_margin="10dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
+        android:onClick="selectDate"
         android:textColor="@color/navy_blue"
         android:textSize="22dp" />
 
