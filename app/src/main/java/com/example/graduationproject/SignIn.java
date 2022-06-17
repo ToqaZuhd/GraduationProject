@@ -22,6 +22,14 @@ import com.example.graduationproject.PointsCharger.chargePoints;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.URL;
+import java.util.Enumeration;
+
 
 public class SignIn extends AppCompatActivity {
     private EditText  edtPassword , edtEmail;
@@ -37,6 +45,8 @@ public class SignIn extends AppCompatActivity {
         edtPassword=findViewById(R.id.Password);
         edtRemember=findViewById(R.id.checkBox1);
 
+        String ipFromHost = findIpv4();
+        Toast.makeText(SignIn.this, ipFromHost, Toast.LENGTH_SHORT).show();
         SharedPreferences preferences=getSharedPreferences("session",MODE_PRIVATE);
         int session=preferences.getInt("login",-1);
         String role=preferences.getString("role","");
@@ -92,7 +102,8 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(SignIn.this,("ادخل كلمة السر"), Toast.LENGTH_SHORT).show();
 
         else {
-            String url = "http://10.0.2.2/graduationProject/Search.php?email="+Email+"&pass="+pass;
+            String ipFromHost = findIpv4();
+            String url = "http://192.168.1.142/graduationProject/Search.php?email="+Email+"&pass="+pass;
             RequestQueue queue = Volley.newRequestQueue(SignIn.this);
             StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
                 @Override
@@ -175,6 +186,27 @@ public class SignIn extends AppCompatActivity {
 
 
 
+    }
+    public String findIpv4(){
+        String ip = "";
+        Enumeration<NetworkInterface> e = null;
+        try {
+            e = NetworkInterface.getNetworkInterfaces();
+            while(e.hasMoreElements()) {
+                NetworkInterface n = e.nextElement();
+                Enumeration<InetAddress> ee = n.getInetAddresses();
+                while (ee.hasMoreElements()) {
+                    InetAddress i = ee.nextElement();
+                    if(i.getHostAddress().startsWith("192.168"))
+                        ip = i.getHostAddress();
+                    // System.out.println(i.getHostAddress());
+                    // Do stuff here
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        return ip;
     }
 
     public void btnClkSentEmail(View view) {
