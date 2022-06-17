@@ -82,6 +82,7 @@ public class TripMapActivity extends AppCompatActivity {
 
         locationRequest =  LocationRequest.create();
 
+
         locationRequest.setInterval(30 * 1000);
         locationRequest.setFastestInterval(5 * 1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
