@@ -40,6 +40,19 @@ public class ChangePassword extends AppCompatActivity {
         confirmPass=findViewById(R.id.editConfirmPass);
 
 
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void checkPass(){

@@ -37,6 +37,17 @@ public class ChangePhoneNum extends AppCompatActivity {
         userID=preferences.getInt("login",-1);
         getSupportActionBar().setTitle("تغيير رقم الهاتف");
         changePhone=findViewById(R.id.editTextPhone);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void btnClkChange(View view) {

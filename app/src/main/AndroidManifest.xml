@@ -129,7 +129,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TripMapActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

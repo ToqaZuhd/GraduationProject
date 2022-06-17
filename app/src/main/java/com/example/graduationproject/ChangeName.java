@@ -39,6 +39,17 @@ public class ChangeName extends AppCompatActivity {
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         changeName=findViewById(R.id.editTextName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void btnClkChange(View view) {

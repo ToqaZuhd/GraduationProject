@@ -35,6 +35,17 @@ public class ChangeEmail extends AppCompatActivity {
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         changeEmail=findViewById(R.id.editTextEmail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void btnClkChange(View view) {
