@@ -30,5 +30,9 @@ public class Choices extends AppCompatActivity {
     public void btnClkGuest(View view) {
         Intent intent = new Intent(Choices.this, StateOfPeopleGuest.class);
         startActivity(intent);
+
+
     }
+
+
 }

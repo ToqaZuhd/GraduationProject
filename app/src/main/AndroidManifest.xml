@@ -46,23 +46,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Choices"
-            android:exported="true" />
-        <activity
-            android:name=".guest.StateOfPeopleGuest"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".guest.DocumentGuestActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name=".StateOfPeople"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".guest.AboutAppGuest"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Passenger_calendar"
             android:exported="true"
@@ -108,7 +99,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Registration"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SignIn"
             android:exported="true" />

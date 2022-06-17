@@ -54,6 +54,7 @@ public class writePost extends AppCompatActivity{
     Button btnPost;
     CircleImageView imageView;
     Toolbar toolbar;
+    IP ip = new IP ();
 
 
     @Override
@@ -115,7 +116,7 @@ public class writePost extends AppCompatActivity{
     private void addPost(String userID, String date, String post) {
 
 
-        String url = "http://10.0.2.2/graduationProject/addPost.php";
+        String url = "http://"+ip.getIp().trim()+"/graduationProject/addPost.php";
         RequestQueue queue = Volley.newRequestQueue(writePost.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

@@ -36,6 +36,7 @@ public class Passenger_calendar extends AppCompatActivity {
     TextView date_view;
     TextView dayInfo;
     Toolbar toolbar;
+    IP ip = new IP ();
     final List <PostEmployee> list = new ArrayList<>() ;
     private RequestQueue queue;
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -75,7 +76,7 @@ public class Passenger_calendar extends AppCompatActivity {
 
     public void getPosts() {
         List<PostEmployee> employeeList = new ArrayList<>();
-        String BASE_URL = "http://10.0.2.2/GraduationProject/getPostDataEmployee.php";
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPostDataEmployee.php";
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

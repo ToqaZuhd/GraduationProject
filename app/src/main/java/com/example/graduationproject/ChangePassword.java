@@ -27,6 +27,7 @@ public class ChangePassword extends AppCompatActivity {
     SharedPreferences preferences;
     private int userID;
     EditText previousPass,NewPass,confirmPass;
+    IP ip = new IP ();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class ChangePassword extends AppCompatActivity {
     }
 
     public void checkPass(){
-        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" + userID;
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/searchName.php?id=" + userID;
         RequestQueue queue = Volley.newRequestQueue(ChangePassword.this);
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
@@ -79,7 +80,7 @@ public class ChangePassword extends AppCompatActivity {
         String newPassword=NewPass.getText().toString();
 
         if (newPassword.equals(confirmPass.getText().toString())){
-                String url = "http://10.0.2.2/GraduationProject/changes.php";
+                String url = "http://"+ip.getIp().trim()+"/GraduationProject/changes.php";
                 RequestQueue queue = Volley.newRequestQueue(ChangePassword.this);
                 StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
                     @Override

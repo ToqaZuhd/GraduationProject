@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Logo;
 import com.example.graduationproject.MainActivity;
@@ -75,6 +76,7 @@ public class manage_reservations extends AppCompatActivity implements Navigation
     private RequestQueue queue;
     SharedPreferences preferences;
     private int providerID;
+    IP ip = new IP();
 
 
     @Override
@@ -97,7 +99,7 @@ public class manage_reservations extends AppCompatActivity implements Navigation
 
     public void getReservations(){
         queue = Volley.newRequestQueue(manage_reservations.this);
-        String url = "http://10.0.2.2/graduationProject/getReservations.php?id="+providerID;
+        String url = "http://"+ip.getIp().trim()+"/graduationProject/getReservations.php?id="+providerID;
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

@@ -48,6 +48,7 @@ public class MyTrips extends AppCompatActivity implements NavigationView.OnNavig
     ListView myTripsList;
     TripsAdapter tripsAdapter;
     ArrayList <Trip>trips = new ArrayList();
+    IP ip = new IP ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class MyTrips extends AppCompatActivity implements NavigationView.OnNavig
 
     public void getTrips () {
             queue = Volley.newRequestQueue(MyTrips.this);
-            String BASE_URL = "http://10.0.2.2/GraduationProject/getUserTrips.php?PassengerID="+userID;
+            String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getUserTrips.php?PassengerID="+userID;
             StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                     new Response.Listener<String>() {
                         @Override

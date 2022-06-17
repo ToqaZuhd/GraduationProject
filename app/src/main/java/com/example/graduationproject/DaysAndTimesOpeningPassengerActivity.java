@@ -37,6 +37,7 @@ public class DaysAndTimesOpeningPassengerActivity extends AppCompatActivity impl
     private RequestQueue queue;
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
+    IP ip = new IP ();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,7 @@ public class DaysAndTimesOpeningPassengerActivity extends AppCompatActivity impl
 
     public void getPosts() {
         List<PostEmployee> employeeList = new ArrayList<>();
-        String BASE_URL = "http://10.0.2.2/GraduationProject/getPostDataEmployee.php";
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPostDataEmployee.php";
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.CarProvider.PostCar;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Model.PostEmployee;
 import com.example.graduationproject.R;
@@ -43,6 +44,7 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity imple
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
+    IP ip = new IP();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity imple
 
     public void getPosts() {
         List<PostEmployee> employeeList = new ArrayList<>();
-        String BASE_URL = "http://10.0.2.2/GraduationProject/getPostDataEmployee.php";
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPostDataEmployee.php";
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

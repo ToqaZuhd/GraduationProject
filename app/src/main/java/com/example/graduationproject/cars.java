@@ -55,6 +55,7 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
     private RequestQueue queue;
+    IP ip = new IP ();
 
 //    ArrayList <carOOB> carsArray = new ArrayList<carOOB>();
     @Override
@@ -74,7 +75,7 @@ public class cars extends AppCompatActivity implements NavigationView.OnNavigati
 
     public void getcars () {
         queue = Volley.newRequestQueue(cars.this);
-        String BASE_URL = "http://10.0.2.2/GraduationProject/getAllCars.php";
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getAllCars.php";
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

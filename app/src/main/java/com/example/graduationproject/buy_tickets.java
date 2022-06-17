@@ -59,6 +59,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
     private RequestQueue queue;
     int scoreNum;
     Trip trip = new Trip();
+    IP ip = new IP ();
 
     int ticketNumber;
 
@@ -108,7 +109,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
     public void getScore(){
         queue = Volley.newRequestQueue(buy_tickets.this);
-        String BASE_URL = "http://10.0.2.2/GraduationProject/searchName.php?id="+userID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/graduationProject/searchName.php?id="+userID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -169,7 +170,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
 
     public void updateScore() {
-        String url = "http://10.0.2.2/GraduationProject/updateScore.php";
+        String url ="http://"+ip.getIp().trim()+"/GraduationProject/updateScore.php";
         RequestQueue queue = Volley.newRequestQueue(buy_tickets.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -243,7 +244,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
     }
 
     public void insertTrip (){
-        String url = "http://10.0.2.2/GraduationProject/addTrip.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/addTrip.php";
         RequestQueue queue = Volley.newRequestQueue(buy_tickets.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -303,7 +304,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
     void getTripID(){
         queue = Volley.newRequestQueue(buy_tickets.this);
-        String BASE_URL = "http://10.0.2.2/graduationProject/gettripid.php?id="+trip.getTicketID();
+        String BASE_URL = "http://"+ip.getIp().trim()+"/graduationProject/gettripid.php?id="+trip.getTicketID();
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

@@ -34,6 +34,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Logo;
 import com.example.graduationproject.Model.carOOB;
@@ -67,6 +68,7 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
     carOOB car = new carOOB();
     SharedPreferences preferences;
     private int providerID;
+    IP ip = new IP();
 
 
     Toolbar toolbar;
@@ -202,7 +204,7 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
 
 
     public void insertCar (){
-        String url = "http://10.0.2.2/GraduationProject/postCar.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/postCar.php";
         RequestQueue queue = Volley.newRequestQueue(PostCar.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

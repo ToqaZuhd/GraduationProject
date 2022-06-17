@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.Model.PostEmployee;
 import com.example.graduationproject.R;
 import com.example.graduationproject.buy_tickets;
@@ -33,6 +34,7 @@ public class DataCardEmployee extends RecyclerView.Adapter<DataCardEmployee.View
 
     List<PostEmployee> employeeList;
     Context context;
+    IP ip = new IP();
 
     public DataCardEmployee(Context context, List<PostEmployee> postEmployees) {
         this.context = context;
@@ -109,7 +111,7 @@ public class DataCardEmployee extends RecyclerView.Adapter<DataCardEmployee.View
     }
 
     private void deletePost(int id) {
-        String url = "http://10.0.2.2/GraduationProject/deletePostByEm.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/deletePostByEm.php";
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

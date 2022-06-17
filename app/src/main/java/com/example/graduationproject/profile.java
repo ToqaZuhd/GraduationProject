@@ -49,7 +49,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
 
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
-
+    IP ip = new IP ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +113,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
 
     public void populateAllData(){
         queue = Volley.newRequestQueue(profile.this);
-        String BASE_URL = "http://10.0.2.2/GraduationProject/searchName.php?id="+userID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/searchName.php?id="+userID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override

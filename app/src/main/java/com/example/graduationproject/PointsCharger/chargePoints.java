@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.CarProvider.PostCar;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Model.Passenger;
 import com.example.graduationproject.OpeningTimesEmployee.WritePostEmployeeActivity;
@@ -57,6 +58,7 @@ public class chargePoints extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
+    IP ip = new IP();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class chargePoints extends AppCompatActivity implements NavigationView.On
 
 
     private void addPoints() {
-        String url = "http://10.0.2.2/GraduationProject/updateScore.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/updateScore.php";
         RequestQueue queue = Volley.newRequestQueue(chargePoints.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

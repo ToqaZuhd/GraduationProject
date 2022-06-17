@@ -47,6 +47,7 @@ public class chooseProfileImage extends AppCompatActivity {
     private RequestQueue queue;
     SharedPreferences preferences;
     private int userID;
+    IP ip = new IP();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +138,7 @@ public class chooseProfileImage extends AppCompatActivity {
     }
 
     public void addPhoto(View view) {
-        String url = "http://10.0.2.2/GraduationProject/AddUsers.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/AddUsers.php";
         RequestQueue queue = Volley.newRequestQueue(chooseProfileImage.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

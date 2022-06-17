@@ -47,7 +47,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Review extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RequestQueue queue;
-    private static final String BASE_URL = "http://10.0.2.2/GraduationProject/getReview.php";
+    IP ip = new IP();
+    private final String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getReview.php";
     RecyclerView recycler;
 
     List<Post> posts=new ArrayList<>();
@@ -216,7 +217,7 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
 
         if (!post.isEmpty() || flag)
         {
-        String url = "http://10.0.2.2/GraduationProject/addReview.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/addReview.php";
         RequestQueue queue = Volley.newRequestQueue(Review.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -272,7 +273,7 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
 
     public void getImage(){
         queue = Volley.newRequestQueue(Review.this);
-        String BASE_URL = "http://10.0.2.2/GraduationProject/searchName.php?id="+userID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/graduationProject/searchName.php?id="+userID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -311,7 +312,7 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
 
 //    public void getImage() {
 //
-//        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" +userID;
+//        String url = "http://"+ip.getIp().trim()+"/GraduationProject/searchName.php?id=" +userID;
 //        RequestQueue queue = Volley.newRequestQueue(Review.this);
 //        StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
 //            @Override

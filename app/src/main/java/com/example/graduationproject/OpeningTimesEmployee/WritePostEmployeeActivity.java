@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.IP;
 import com.example.graduationproject.R;
 
 import org.json.JSONException;
@@ -40,6 +41,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     TextView postDateEdt;
     Button chooseDate;
     Calendar calendar = Calendar.getInstance();
+    IP ip = new IP();
 
 
     @Override
@@ -140,7 +142,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     }
 
     private void addPost(String date, String post) {
-        String url = "http://10.0.2.2/GraduationProject/addPostData.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/addPostData.php";
         RequestQueue queue = Volley.newRequestQueue(WritePostEmployeeActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -186,7 +188,7 @@ public class WritePostEmployeeActivity extends AppCompatActivity {
     }
 
     private void updatePost(String id, String date, String post) {
-        String url = "http://10.0.2.2/GraduationProject/updatePostData.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/updatePostData.php";
         RequestQueue queue = Volley.newRequestQueue(WritePostEmployeeActivity.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override

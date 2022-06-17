@@ -47,6 +47,7 @@ public class carDescription extends AppCompatActivity {
     SharedPreferences preferences;
     int days=1;
     Toolbar toolbar;
+    IP ip = new IP ();
 
 
     @Override
@@ -56,6 +57,7 @@ public class carDescription extends AppCompatActivity {
 
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         TripID=preferences.getInt("TripID",-1);
+        System.out.println("Tripppp" + TripID);
 
         Intent intent = getIntent();
         carID = intent.getIntExtra("carID", 0);
@@ -113,7 +115,7 @@ public class carDescription extends AppCompatActivity {
 
     public void getCarData(){
         queue = Volley.newRequestQueue(carDescription.this);
-        String BASE_URL = "http://10.0.2.2/graduationProject/searchcarid.php?id="+carID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/graduationProject/searchcarid.php?id="+carID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -170,7 +172,7 @@ public class carDescription extends AppCompatActivity {
 
     private void getProviderNameAndNumber() {
         queue = Volley.newRequestQueue(carDescription.this);
-        String BASE_URL = "http://10.0.2.2/graduationProject/searchcarprovider.php?id="+carID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/graduationProject/searchcarprovider.php?id="+carID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -205,7 +207,7 @@ public class carDescription extends AppCompatActivity {
 
 
     public void rentCar(View view) {
-        String url = "http://10.0.2.2/graduationProject/addRentRequest.php";
+        String url = "http://"+ip.getIp().trim()+"/graduationProject/addRentRequest.php";
         RequestQueue queue = Volley.newRequestQueue(carDescription.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -219,6 +221,11 @@ public class carDescription extends AppCompatActivity {
 
                         Intent intent = new Intent(carDescription.this, successfullOperation.class);
                         startActivity(intent);
+                    }
+
+                    else {
+                        Toast.makeText(carDescription.this,
+                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -244,7 +251,7 @@ public class carDescription extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
 
-                System.out.println(TripID);
+                System.out.println("TRIP ID : "+TripID);
                 params.put("TripID", String.valueOf(TripID));
                 params.put("CarNumber", String.valueOf(carID));
                 java.sql.Date date=new java.sql.Date(System.currentTimeMillis());

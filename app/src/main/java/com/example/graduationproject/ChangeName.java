@@ -30,6 +30,7 @@ public class ChangeName extends AppCompatActivity {
     SharedPreferences preferences;
     private int userID;
     EditText changeName;
+    IP ip = new IP ();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class ChangeName extends AppCompatActivity {
             }
            else{
 
-                String url = "http://10.0.2.2/GraduationProject/changes.php";
+                String url = "http://"+ip.getIp().trim()+"/GraduationProject/changes.php";
                 RequestQueue queue = Volley.newRequestQueue(ChangeName.this);
                 StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
                     @Override

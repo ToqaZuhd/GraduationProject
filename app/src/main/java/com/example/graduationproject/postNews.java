@@ -54,10 +54,12 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
     private int userID;
     private RequestQueue queue;
     private RequestQueue queue1;
-    private static final String BASE_URL = "http://10.0.2.2/GraduationProject/getPostData.php";
+    IP ip = new IP ();
+    private final String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPostData.php";
     RecyclerView recycler;
 
     List<Post> posts=new ArrayList<>();
+
 
 
     CircleImageView imageView;
@@ -135,7 +137,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
     public void getImage(){
         queue = Volley.newRequestQueue(postNews.this);
-        String BASE_URL = "http://10.0.2.2/GraduationProject/searchName.php?id="+userID;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/searchName.php?id="+userID;
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -247,7 +249,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
 
 
 //    public void getName() {
-//        String url = "http://10.0.2.2/GraduationProject/searchName.php?id=" + userID;
+//        String url = "http://"+ip.getIp().trim()+"/GraduationProject/searchName.php?id=" + userID;
 //        RequestQueue queue = Volley.newRequestQueue(postNews.this);
 //        StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
 //            @Override

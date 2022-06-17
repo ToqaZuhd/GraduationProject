@@ -28,6 +28,7 @@ import java.util.Map;
 public class Registration extends AppCompatActivity {
 
     private EditText edtUserName, edtIDNumber,edtPhoneNum,edtPassword,edtConfirm,edtEmail;
+    IP ip = new IP ();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +78,7 @@ public class Registration extends AppCompatActivity {
     private void addPerson(String UserName, String IDNum,String PhoneNum,String Email ,String Password){
 
 
-        String url = "http://10.0.2.2/GraduationProject/AddUsers.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/AddUsers.php";
         RequestQueue queue = Volley.newRequestQueue(Registration.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
