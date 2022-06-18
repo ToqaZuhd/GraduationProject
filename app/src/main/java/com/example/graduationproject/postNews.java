@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -78,6 +79,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("نشر الأخبار");
+
 
 
 
@@ -234,12 +236,8 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         });
         queue.add(request);
     }
-    public void btnClkPost(View view) {
-        Intent intent =new Intent(postNews.this,writePost.class);
-        intent.putExtra("name",UserName);
-        intent.putExtra("image",imageName);
-        startActivity(intent);
-    }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -310,6 +308,12 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
+    public void onClick(View view) {
+        Intent intent =new Intent(postNews.this,writePost.class);
+        intent.putExtra("name",UserName);
+        intent.putExtra("image",imageName);
+        startActivity(intent);
+    }
 }
 //    List<Post> ListOfPost;
 //    RecyclerView recyclerView;

@@ -25,6 +25,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.CarProvider.PostCar;
+import com.example.graduationproject.CarProvider.manage_reservations;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -61,38 +63,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حسابي");
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-
-
-        // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId())
-                {
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.news:
-                        startActivity(new Intent(getApplicationContext(),postNews.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.profile:
-                         return true;
-                }
-                return false;
-            }
-        });
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
 
@@ -105,6 +76,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         imgButton=findViewById(R.id.imageButton);
 //        imgButton.setOnClickListener(changePhoto);
         populateAllData();
+        nav();
 
     }
 
@@ -173,6 +145,45 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
 //    } ;
 
 
+
+
+    public void nav (){
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.news:
+                        startActivity(new Intent(getApplicationContext(),postNews.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext(),profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
 
 
     @Override

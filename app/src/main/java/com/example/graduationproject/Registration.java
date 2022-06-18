@@ -66,10 +66,10 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(Registration.this,("ادخل كملة المرور"), Toast.LENGTH_SHORT).show();
 
         else if (confirmPassword.isEmpty())
-            Toast.makeText(Registration.this,("ادخل كلمة السر مرة أخرى"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Registration.this,("ادخل كلمة المرور مرة أخرى"), Toast.LENGTH_SHORT).show();
 
         else if (!Password.equals(confirmPassword))
-            Toast.makeText(Registration.this,("لا يوجد تطابق بين كلمة السر وإعادتها"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Registration.this,("لا يوجد تطابق بين كلمة المرور وإعادتها"), Toast.LENGTH_SHORT).show();
 
 
         else check_Email_Validation(UserName, IDNumber,PhoneNumber,email ,Password);

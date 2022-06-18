@@ -76,7 +76,7 @@
                 <TextView
                     android:id="@+id/textView4"
                     style="@style/fontstyle"
-                    android:text=" > تذكرة الباص و ضريبة المغادرة : 192 نقطة للشخص الواحد" />
+                    android:text="  ❖ تذكرة الباص و ضريبة المغادرة : 192 نقطة للشخص الواحد." />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -85,7 +85,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15sp"
                     android:layout_marginRight="10dp"
-                    android:text=" > تذكرة الحقيبة : 6 نقاط للحقيبة الواحدة"
+                    android:text="  ❖ تذكرة الحقيبة : 6 نقاط للحقيبة الواحدة."
                     android:textColor="#18325D"
                     android:textSize="20sp"
                     android:textStyle="bold" />

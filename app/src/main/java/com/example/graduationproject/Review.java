@@ -210,12 +210,24 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
         String post=edtPost.getText().toString().trim();
         float rateUser=ratingBar.getRating();
 
-        if (rate==rateUser || rateUser==0)
-            flag=false;
-        else
-            flag=true;
+//        if (rate==rateUser || rateUser==0)
+//            flag=false;
+//        else
+//            flag=true;
 
-        if (!post.isEmpty() || flag)
+
+
+        System.out.println(rateUser);
+        if(rateUser==0.0  ){
+            Toast.makeText(Review.this,"أدخل التقييم من 5", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (post.isEmpty()){
+            Toast.makeText(Review.this,"أدخل رأيك في المكان المخصص", Toast.LENGTH_SHORT).show();
+        }
+
+
+        else if (!post.isEmpty() &&rateUser!=0.0)
         {
         String url = "http://"+ip.getIp().trim()+"/GraduationProject/addReview.php";
         RequestQueue queue = Volley.newRequestQueue(Review.this);
@@ -228,7 +240,8 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
                     JSONObject jsonObject = new JSONObject(response);
 
                     Toast.makeText(Review.this,"تمت الاضافة بنجاح", Toast.LENGTH_SHORT).show();
-
+                    Intent intent =new Intent(Review.this,Review.class);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -262,12 +275,9 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
             }
         };
         queue.add(request);
-            Intent intent =new Intent(Review.this,Review.class);
-            startActivity(intent);
+
         }
-        if(rateUser==0){
-            Toast.makeText(Review.this,"fill rate please", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
 

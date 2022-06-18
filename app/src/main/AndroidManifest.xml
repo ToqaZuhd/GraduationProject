@@ -105,10 +105,12 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SignIn"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".LogOut"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".postNews"
             android:exported="true"
@@ -157,7 +159,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Logo"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

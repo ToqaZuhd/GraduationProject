@@ -27,51 +27,52 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo2" />
 
-    <TextView
-        android:id="@+id/AddPerson"
-        android:layout_width="141dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="30dp"
-        android:text="تسجيل دخول"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textSize="25dp"/>
+            <TextView
+                android:id="@+id/AddPerson"
+                android:layout_width="141dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="تسجيل دخول"
+                android:textColor="@color/navy_blue"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
 
+            <EditText
+                android:id="@+id/EmailNum"
+                android:layout_width="234dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:hint="ايميل المستخدم"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/navy_blue"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/AddPerson" />
 
-
-    <EditText
-        android:id="@+id/EmailNum"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:hint="ايميل المستخدم"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/AddPerson"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="normal"/>
-
-    <EditText
-        android:id="@+id/Password"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:hint="كلمة السر"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/EmailNum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="normal"/>
+            <EditText
+                android:id="@+id/Password"
+                android:layout_width="234dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:hint="كلمة السر"
+                android:inputType="textPassword"
+                android:textColor="@color/navy_blue"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/EmailNum" />
 
             <CheckBox
                 android:id="@+id/checkBox1"
@@ -82,6 +83,7 @@
                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                 android:fontFamily="sans-serif-condensed"
                 android:text="تذكرني"
+                android:textColor="@color/navy_blue"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.255"
@@ -89,16 +91,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
 
             <Button
-        android:id="@+id/SignIn_Button"
-        android:layout_width="234dp"
-        android:layout_height="48dp"
-        android:text="تسجيل الدخول"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="btnClkLogin"
-        android:backgroundTint="@color/blue"/>
+                android:id="@+id/SignIn_Button"
+                android:layout_width="234dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/blue"
+                android:onClick="btnClkLogin"
+                android:text="تسجيل الدخول"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
 
             <TextView
@@ -110,7 +115,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:onClick="btnClkSentEmail"
                 android:text="هل نسيت كلمة المرور؟"
-                android:textColor="@color/black"
+                android:textColor="@color/navy_blue"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,22 +126,21 @@
                 />
 
             <TextView
-        android:id="@+id/CreateAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="إنشاء حساب جديد"
-        android:gravity="center"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/SignIn_Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:clickable="true"
-        android:onClick="btnClkForRegister"
-        />
+                android:id="@+id/CreateAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:onClick="btnClkForRegister"
+                android:text="إنشاء حساب جديد"
+                android:textColor="@color/navy_blue"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SignIn_Button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

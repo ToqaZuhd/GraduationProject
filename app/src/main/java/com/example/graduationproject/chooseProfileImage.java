@@ -148,6 +148,8 @@ public class chooseProfileImage extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     Toast.makeText(chooseProfileImage.this,
                             jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(chooseProfileImage.this,profile.class);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -182,6 +184,7 @@ public class chooseProfileImage extends AppCompatActivity {
                 params.put("image", sImage);
                 params.put("IDNum", String.valueOf(userID));
 
+
                 // at last we are returning our params.
                 return params;
             }
@@ -189,8 +192,7 @@ public class chooseProfileImage extends AppCompatActivity {
         // below line is to make
         // a json object request.
         queue.add(request);
-        Intent intent =new Intent(chooseProfileImage.this,profile.class);
-        startActivity(intent);
+
 
     }
 }
