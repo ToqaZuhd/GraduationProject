@@ -72,7 +72,7 @@ public class Review extends AppCompatActivity implements NavigationView.OnNaviga
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("شراء التذاكر");
+        getSupportActionBar().setTitle("آراء المستخدمين");
 
 
         nav ();

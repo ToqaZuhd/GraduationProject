@@ -33,19 +33,19 @@
 
             <TextView
                 android:id="@+id/Name"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="TextView"
                 android:textColor="@color/navy_blue"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/Date"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="110dp"
+                android:layout_marginRight="95dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
                 android:text="TextView"
@@ -64,7 +64,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/navy_blue"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="normal|bold" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

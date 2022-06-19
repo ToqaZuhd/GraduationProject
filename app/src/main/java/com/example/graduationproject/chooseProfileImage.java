@@ -87,7 +87,6 @@ public class chooseProfileImage extends AppCompatActivity {
     }
 
     private void selectImage() {
-        image.setImageBitmap(null);
         Intent intent=new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent,"Select Image"),100);
@@ -125,7 +124,7 @@ public class chooseProfileImage extends AppCompatActivity {
                 // initialize byte stream
                 ByteArrayOutputStream stream=new ByteArrayOutputStream();
                 // compress Bitmap
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG,5,stream);
                 // Initialize byte array
                 image.setImageBitmap(bitmap);
                 byte[] bytes=stream.toByteArray();

@@ -188,7 +188,7 @@ public class manage_reservations extends AppCompatActivity implements Navigation
         switch (item.getItemId()) {
 
             case R.id.logOut_nav:
-                intent=new Intent(manage_reservations.this, Logo.class);
+                intent=new Intent(manage_reservations.this, LogOut.class);
                 startActivity(intent);
                 break;
 

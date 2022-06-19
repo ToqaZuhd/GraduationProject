@@ -107,6 +107,8 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.news:
+                        startActivity(new Intent(getApplicationContext(),postNews.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),profile.class));
@@ -312,6 +314,7 @@ public class postNews extends AppCompatActivity implements NavigationView.OnNavi
         Intent intent =new Intent(postNews.this,writePost.class);
         intent.putExtra("name",UserName);
         intent.putExtra("image",imageName);
+        System.out.println("ImageSizzze"+imageName.length());
         startActivity(intent);
     }
 }

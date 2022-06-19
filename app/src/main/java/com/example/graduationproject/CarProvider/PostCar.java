@@ -34,6 +34,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.graduationproject.ChangePassword;
 import com.example.graduationproject.IP;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.Logo;
@@ -195,8 +196,10 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
             Toast.makeText(PostCar.this,("الرجاء ادخال نوع الجير"), Toast.LENGTH_SHORT).show();
         }
         else{
-//            getCar();
-//            insertCar();
+            getCar();
+            insertCar();
+            Intent intent = new Intent(view.getContext(), PostCar.class);
+            startActivity(intent);
 
 
         }
@@ -318,7 +321,7 @@ public class PostCar extends AppCompatActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
 
             case R.id.logOut_nav:
-                intent=new Intent(PostCar.this, Logo.class);
+                intent=new Intent(PostCar.this, LogOut.class);
                 startActivity(intent);
                 break;
 
