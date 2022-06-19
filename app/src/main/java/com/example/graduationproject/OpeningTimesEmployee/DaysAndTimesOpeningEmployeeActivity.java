@@ -54,7 +54,7 @@ public class DaysAndTimesOpeningEmployeeActivity extends AppCompatActivity imple
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("عن التطبيق");
+        getSupportActionBar().setTitle("دوام الجسر");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_Drawer_Open, R.string.navigation_Drawer_Close);

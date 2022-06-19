@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/car_number"
@@ -22,8 +22,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/car_type"
@@ -33,8 +34,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/rentDate"
@@ -44,8 +46,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/endDate"
@@ -55,8 +58,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/passengerName"
@@ -66,8 +70,9 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/passengerMobile"
@@ -78,8 +83,9 @@
             android:layout_marginBottom="4dp"
             android:gravity="center"
             android:inputType="phone"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </GridLayout>
