@@ -153,20 +153,21 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 //        myRow3.setTitle("10 AM");
 //        myRow3.setBellowLineColor(Color.YELLOW);
 //        myRow3.setBellowLineSize(6);
+//        myRow3.setDescription();
 
 
 
-        float crisisPercentage = (float) 5.2;
-        if (crisisPercentage <6) {
-            addRow("8 AM", Color.RED );
-            addRow("10 AM", Color.RED );
-            crisisPercentage +=3;
-        }
-        else {
-            addRow("11 AM", Color.RED );
-            addRow("12 AM", Color.RED );
-            crisisPercentage +=3;
-        }
+//        float crisisPercentage = (float) 5.2;
+//        if (crisisPercentage <6) {
+//            addRow("8 AM", Color.RED );
+//            addRow("10 AM", Color.RED );
+//            crisisPercentage +=3;
+//        }
+//        else {
+//            addRow("11 AM", Color.RED );
+//            addRow("12 AM", Color.RED );
+//            crisisPercentage +=3;
+//        }
 //// Add the new row to the list
 //        timelineRowsList.add(myRow);
 //        timelineRowsList.add(myRow2);

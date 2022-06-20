@@ -4,7 +4,6 @@
     package="com.example.graduationproject"
     android:usesCleartextTraffic="true">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GraduationProject"
         android:usesCleartextTraffic="true">
+        <activity android:name=".test2"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".guest.StateOfPeopleGuest"
             android:exported="true"
@@ -49,13 +52,11 @@
         <activity
             android:name=".Choices"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".StateOfPeople"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Passenger_calendar"
             android:exported="true"
@@ -102,15 +103,15 @@
         <activity
             android:name=".Registration"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignIn"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LogOut"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".postNews"
             android:exported="true"
@@ -132,7 +133,7 @@
         <activity
             android:name=".TripMapActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -140,7 +141,7 @@
         <activity
             android:name=".PointsCharger.chargePoints"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cars"
             android:exported="true"
