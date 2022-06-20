@@ -49,9 +49,9 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         TimelineRow myRow1 = new TimelineRow(1);
         myRow1.setTitle("معبر الكرامة (استراحة أريحا)");
         myRow1.setDescription(getDescription(1000, "أزمة خانقة"));
-        myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.red));
-        myRow1.setImageSize(30);
-        myRow1.setBellowLineSize(28);
+        myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.checkmark));
+        myRow1.setImageSize(50);
+        myRow1.setBellowLineSize(22);
         myRow1.setBellowLineColor(Color.argb(178, 178, 178, 178));
         myRow1.setTitleColor(Color.argb(255, 24, 50, 93));
         myRow1.setDescriptionColor(Color.argb(255, 24, 50, 93));
@@ -67,7 +67,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         myRow2.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.orange));
         myRow2.setImageSize(30);
         myRow2.setBellowLineColor(Color.argb(178, 178, 178, 178));
-        myRow2.setBellowLineSize(28);
+        myRow2.setBellowLineSize(22);
         myRow2.setTitleColor(Color.argb(255, 24, 50, 93));
         myRow2.setDescriptionColor(Color.argb(255, 24, 50, 93));
         timelineRowsList.add(myRow2);
