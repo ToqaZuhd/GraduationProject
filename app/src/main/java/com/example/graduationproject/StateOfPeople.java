@@ -68,7 +68,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
     SharedPreferences preferences;
     private int userID;
 
-    int counterEnteredJericho = 1;
+    int counterEnteredJericho = 1, counterEnteredJewsBorder = 1, counterEnteredJordan = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,7 +226,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         else{
             //permission not granted, we will ask for it
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 99);
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 99);
             }
         }
     }
@@ -241,30 +241,31 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         double lon = 35.18731940607394;
 
         //consider the radius value = 1 km
-        int radius = 1000; // I should ensure that it is correct // I think it should be less than 1 km => 200 m. // it should be double
+        int radius = 1000;
 
 
         //use the sld to calculate the distance between the exact location of Jericho rest (center) and the exact location of the user
         //to check if the user is inside or outside the circle (range)
 
-        //the distance in meter
-        //double distance = Math.sqrt(Math.pow(lat - location.getLatitude(), 2) + Math.pow(lon - location.getLongitude(), 2));
 
-        /*float []results = new float[1];
-        Location.distanceBetween(lat, lon, location.getLatitude(), location.getLatitude(), results);*/
+        Location jerichoArea = new Location("");
+        jerichoArea.setLatitude(32.031158019007904);
+        jerichoArea.setLongitude(35.200929130217354);
+        float jerichoDist = jerichoArea.distanceTo(location);
 
-        Location areaOfInterest = new Location("");
-        areaOfInterest.setLatitude(32.031158019007904);
-        areaOfInterest.setLongitude(35.200929130217354);
-        float dist = areaOfInterest.distanceTo(location);
-        /*double ky = 40000 / 360;
-        double kx = Math.cos(Math.PI * lat / 180.0) * ky;
-        double dx = Math.abs(lon - location.getLongitude()) * kx;
-        double dy = Math.abs(lat - location.getLatitude()) * ky;
-        double results = Math.sqrt(dx * dx + dy * dy);*/
+        Location jewsArea = new Location("");
+        jewsArea.setLatitude(31.869016092998148);
+        jewsArea.setLongitude(35.53160625666317);
+        float jewsDist = jewsArea.distanceTo(location);
+
+        //31.889659788142747, 35.578367695985555
+        Location jordanArea = new Location("");
+        jordanArea.setLatitude(31.889659788142747);
+        jordanArea.setLongitude(35.578367695985555);
+        float jordanDist = jordanArea.distanceTo(location);
 
         //inside the range then the entered time in the database will be updated
-        if (dist <= radius) {
+        if (jerichoDist <= radius) {
 
             String address = "jericho rest";
             if(counterEnteredJericho == 1){
@@ -273,22 +274,43 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
             }
             addLocation(idUser, address);
             populateAllData();
-            Toast.makeText(StateOfPeople.this, address + dist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+            Toast.makeText(StateOfPeople.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
+
+
+        if(jewsDist <= radius){
+
+            String address = "jews rest";
+            if(counterEnteredJewsBorder == 1){
+                addEnteredTime(idUser, address);
+                counterEnteredJewsBorder ++;
+            }
+            addLocation(idUser, address);
+            populateAllData();
+            Toast.makeText(StateOfPeople.this, address + jewsDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+
+        }
+
+        if(jordanDist <= radius){
+
+            String address = "jordan rest";
+            if(counterEnteredJordan == 1){
+                addEnteredTime(idUser, address);
+                counterEnteredJordan ++;
+            }
+            addLocation(idUser, address);
+            populateAllData();
+            Toast.makeText(StateOfPeople.this, address + jordanDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+
+        }
+
+
         else{
-            Toast.makeText(StateOfPeople.this, "outside" + dist, Toast.LENGTH_LONG).show();
+            Toast.makeText(StateOfPeople.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
         }
 
     }
-
-    /*function arePointsNear(checkPoint, centerPoint, km) {
-        var ky = 40000 / 360;
-        var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
-        var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
-        var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
-        return Math.sqrt(dx * dx + dy * dy) <= km;
-    }*/
 
 
     private void addEnteredTime(String IDNum,String coordinate){
