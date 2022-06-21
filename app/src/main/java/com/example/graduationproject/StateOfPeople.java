@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -272,12 +273,13 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
                 addEnteredTime(idUser, address);
                 counterEnteredJericho ++;
             }
-            addLocation(idUser, address);
+            //addLocation(idUser, address);
             populateAllData();
             Toast.makeText(StateOfPeople.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
 
+       // if(jerichoDist > radius && )
 
         if(jewsDist <= radius){
 
@@ -437,18 +439,19 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
     }
 
     public void populateAllData(){
-        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeridTime.php";
+        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeriodTime.php";
 
         RequestQueue queue = Volley.newRequestQueue(StateOfPeople.this);
-        ArrayList<Long> time=new ArrayList<>();
+
         StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray roomList=new JSONArray(response);
-                            for(int i=0;i<roomList.length();i++){
-                                JSONObject jsonObject= roomList.getJSONObject(i);
+                            int numOfPeople=0;
+                            JSONArray DataList=new JSONArray(response);
+                            for(int i=0;i<DataList.length();i++){
+                                JSONObject jsonObject= DataList.getJSONObject(i);
                                 String date = jsonObject.getString("date");
 
                                 Calendar c = Calendar.getInstance();
@@ -460,24 +463,24 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
                                 long diff = currDate.getTime() - inputDate.getTime();
                                 long seconds = diff / 1000;
-                                time.add(seconds);
-//                                long minutes = seconds / 60;
-//                                long hours = minutes / 60;
 
-
-
+                                if (seconds>3600)
+                                    numOfPeople++;
 
                             }
 
-                            long total=0;
-                            for (int i=0;i<time.size();i++){
-                                total=+time.get(i);
+                            if (numOfPeople<50){
+
                             }
+                            else if (numOfPeople>50 && numOfPeople<=100){
 
-                            long avg=total/time.size();
+                            }
+                            else if (numOfPeople>100 && numOfPeople<=300){
 
-                            long avgMinutes=avg/60;
-                            long avgHours=avgMinutes/60;
+                            }
+                            else if (numOfPeople>300){
+
+                            }
 
                         } catch (JSONException | ParseException e) {
                             e.printStackTrace();

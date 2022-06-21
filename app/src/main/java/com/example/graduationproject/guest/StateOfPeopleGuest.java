@@ -17,7 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.DocumentActivity;
 import com.example.graduationproject.LogOut;
 import com.example.graduationproject.MainActivity;
@@ -26,16 +33,23 @@ import com.example.graduationproject.R;
 import com.example.graduationproject.Registration;
 import com.example.graduationproject.Setting;
 import com.example.graduationproject.SignIn;
+import com.example.graduationproject.StateOfPeople;
 import com.example.graduationproject.aboutApp;
 import com.example.graduationproject.profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.qap.ctimelineview.TimelineRow;
 import org.qap.ctimelineview.TimelineViewAdapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class StateOfPeopleGuest extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -170,7 +184,64 @@ public class StateOfPeopleGuest extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+    public void populateAllData(){
+        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeridTime.php";
 
+        RequestQueue queue = Volley.newRequestQueue(StateOfPeopleGuest.this);
+        ArrayList<Long> time=new ArrayList<>();
+        StringRequest request = new StringRequest(Request.Method.GET, BASE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray roomList=new JSONArray(response);
+                            for(int i=0;i<roomList.length();i++){
+                                JSONObject jsonObject= roomList.getJSONObject(i);
+                                String date = jsonObject.getString("date");
+
+                                Calendar c = Calendar.getInstance();
+                                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String formattedDate = df.format(c.getTime());
+                                Date currDate=df.parse(formattedDate);
+                                Date inputDate = df.parse(date);
+
+
+                                long diff = currDate.getTime() - inputDate.getTime();
+                                long seconds = diff / 1000;
+                                time.add(seconds);
+//                                long minutes = seconds / 60;
+//                                long hours = minutes / 60;
+
+
+
+
+                            }
+
+                            long total=0;
+                            for (int i=0;i<time.size();i++){
+                                total=+time.get(i);
+                            }
+
+                            long avg=total/time.size();
+
+                            long avgMinutes=avg/60;
+                            long avgHours=avgMinutes/60;
+
+                        } catch (JSONException | ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(StateOfPeopleGuest.this, error.toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
