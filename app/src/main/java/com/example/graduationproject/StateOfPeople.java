@@ -210,8 +210,6 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
     }
 
     private void updateGPS(){
-
-
         // the exact location of the user
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(StateOfPeople.this);
 
@@ -234,12 +232,9 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
     private void insideRangeOrNot(Location location) {
 
-        // rawabi 32.00810975566043, 35.18731940607394
+        //rawabi 32.00810975566043, 35.18731940607394
         //abwein 32.031158019007904, 35.200929130217354
         String idUser = String.valueOf(userID);
-        //the exact location of the Jericho rest
-        double lat = 32.00810975566043;
-        double lon = 35.18731940607394;
 
         //consider the radius value = 1 km
         int radius = 1000;
@@ -247,8 +242,6 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
         //use the sld to calculate the distance between the exact location of Jericho rest (center) and the exact location of the user
         //to check if the user is inside or outside the circle (range)
-
-
         Location jerichoArea = new Location("");
         jerichoArea.setLatitude(32.031158019007904);
         jerichoArea.setLongitude(35.200929130217354);
@@ -259,7 +252,6 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         jewsArea.setLongitude(35.53160625666317);
         float jewsDist = jewsArea.distanceTo(location);
 
-        //31.889659788142747, 35.578367695985555
         Location jordanArea = new Location("");
         jordanArea.setLatitude(31.889659788142747);
         jordanArea.setLongitude(35.578367695985555);
@@ -273,44 +265,48 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
                 addEnteredTime(idUser, address);
                 counterEnteredJericho ++;
             }
-            //addLocation(idUser, address);
-            populateAllData();
             Toast.makeText(StateOfPeople.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
+         else if (jerichoDist > radius && location.getLatitude() > jerichoArea.getLatitude() && location.getLatitude() < jewsArea.getLatitude()){
+             String address = "betweenJerichoJews";
+            addEnteredTime(idUser, address);
+        }
+        else if(jewsDist <= radius){
 
-       // if(jerichoDist > radius && )
-
-        if(jewsDist <= radius){
-
-            String address = "jews rest";
+            String address = "jews border";
             if(counterEnteredJewsBorder == 1){
                 addEnteredTime(idUser, address);
                 counterEnteredJewsBorder ++;
             }
-            addLocation(idUser, address);
-            populateAllData();
             Toast.makeText(StateOfPeople.this, address + jewsDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
+         else if (jewsDist > radius && location.getLatitude() > jewsArea.getLatitude() && location.getLatitude() < jordanArea.getLatitude()){
+           String address = "betweenJewsJordan";
+            addEnteredTime(idUser, address);
+        }
+        //between jews and jordan, coordinate betweenJewsJordan
 
-        if(jordanDist <= radius){
+        else if(jordanDist <= radius){
 
-            String address = "jordan rest";
+            String address = "jordan border";
             if(counterEnteredJordan == 1){
                 addEnteredTime(idUser, address);
                 counterEnteredJordan ++;
             }
-            addLocation(idUser, address);
-            populateAllData();
+
+
             Toast.makeText(StateOfPeople.this, address + jordanDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
 
-
-        else{
+        else if (jordanDist > radius && jordanArea.getLatitude() < location.getLatitude()){
+            String address = "outside jordan";
+            addEnteredTime(idUser, address);
             Toast.makeText(StateOfPeople.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
         }
+       // populateAllData(a);
 
     }
 
@@ -380,66 +376,9 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         queue.add(request);
     }
 
-    private void addLocation(String IDNum,String coordinate){
 
-        String url = "http://192.168.1.143/GraduationProject/AddLocation.php";
-        RequestQueue queue = Volley.newRequestQueue(StateOfPeople.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("TAG", "RESPONSE IS " + response);
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    if (jsonObject.getString("error").equals("false")) {
-                        Toast.makeText(StateOfPeople.this,
-                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-
-                    }} catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Toast.makeText(StateOfPeople.this,
-                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                // as we are passing data in the form of url encoded
-                // so we are passing the content type below
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-
-                // below line we are creating a map for storing
-                // our values in key and value pair.
-                Map<String, String> params = new HashMap<String, String>();
-
-                // on below line we are passing our
-                // key and value pair to our parameters.
-                params.put("coordinate", coordinate);
-                params.put("IDNum", IDNum);
-
-                // at last we are returning our params.
-                return params;
-            }
-        };
-        // below line is to make
-        // a json object request.
-        queue.add(request);
-    }
-
-    public void populateAllData(){
-        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeriodTime.php";
+    public void populateAllData(String coordinate){
+        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
 
         RequestQueue queue = Volley.newRequestQueue(StateOfPeople.this);
 
