@@ -59,6 +59,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
 
     SharedPreferences preferences;
     private int userID;
+    IP ip = new IP ();
 
     int counterEnteredJericho = 1, counterEnteredJewsBorder = 1, counterEnteredJordan = 1;
 
@@ -95,8 +96,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         myRow1.setTitleColor(Color.argb(255, 24, 50, 93));
         myRow1.setDescriptionColor(Color.argb(255, 24, 50, 93));
         timelineRowsList.add(myRow1);*/
-//        myRow1.setBackgroundColor(Color.argb(255, 0, 0, 0));
-//        myRow1.setBackgroundSize(60);
+
 
 
 
@@ -189,10 +189,10 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         }
     }
 
-    public String getDescription (int numOfPeople, String state){
-        return "عدد المسافرين التقريبي حالياً : " + numOfPeople + " مسافر \n" + state;
-
-    }
+//    public String getDescription (int numOfPeople){
+//        return "عدد المسافرين التقريبي حالياً : " + numOfPeople ;
+//
+//    }
 
     public void nav (){
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -234,7 +234,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
 
 
     public void populateAllData(String coordinate){
-        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
 
         RequestQueue queue = Volley.newRequestQueue(test2.this);
 
@@ -267,31 +267,33 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                             if (coordinate.equals("jericho rest")) {
                                 if (numOfPeople < 50) {
 
-                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.green));
+                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
+
 
                                 } else if (numOfPeople > 50 && numOfPeople <= 100) {
-                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
+                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
 
                                 } else if (numOfPeople > 100 && numOfPeople <= 300) {
-
+                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
 
                                 } else if (numOfPeople > 300) {
-                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.red));
+                                    myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
 
                                 }
                             }
                             else if (coordinate.equals("jews bridge")) {
                                 if (numOfPeople < 50) {
 
-                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.green));
+                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
 
                                 } else if (numOfPeople > 50 && numOfPeople <= 100) {
-                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
+                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
 
                                 } else if (numOfPeople > 100 && numOfPeople <= 300) {
+                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
 
                                 } else if (numOfPeople > 300) {
-                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.red));
+                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
 
                                 }
                             }
@@ -299,16 +301,17 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                             else if (coordinate.equals("jordan bridge")) {
                                 if (numOfPeople < 50) {
 
-                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.green));
+                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
 
                                 } else if (numOfPeople > 50 && numOfPeople <= 100) {
-                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
+                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
 
 
                                 } else if (numOfPeople > 100 && numOfPeople <= 300) {
+                                    myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
 
                                 } else if (numOfPeople > 300) {
-                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.red));
+                                    myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
 
 
                                 }
