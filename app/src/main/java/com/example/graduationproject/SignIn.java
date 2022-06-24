@@ -29,6 +29,8 @@ public class SignIn extends AppCompatActivity {
     private int id;
     private String role;
 
+    IP ip = new IP ();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +94,8 @@ public class SignIn extends AppCompatActivity {
             Toast.makeText(SignIn.this,("ادخل كلمة السر"), Toast.LENGTH_SHORT).show();
 
         else {
-            String url = "http://10.0.2.2/graduationProject/Search.php?email="+Email+"&pass="+pass;
+            Toast.makeText(SignIn.this, ip.getIp().trim(),Toast.LENGTH_LONG).show();
+            String url = "http://"+ip.getIp().trim()+"/graduationProject/Search.php?email="+Email+"&pass="+pass;
             RequestQueue queue = Volley.newRequestQueue(SignIn.this);
             StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
                 @Override
@@ -184,7 +187,7 @@ public class SignIn extends AppCompatActivity {
                     "ادخل الاإيميل", Toast.LENGTH_SHORT).show();
         }
         else{
-            String url = "http://10.0.2.2/GraduationProject/Search.php?email="+IDNum;
+            String url = "http://"+ip.getIp().trim()+"/GraduationProject/Search.php?email="+IDNum;
             RequestQueue queue = Volley.newRequestQueue(SignIn.this);
             StringRequest request = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
                 @Override

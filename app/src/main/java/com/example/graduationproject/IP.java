@@ -7,7 +7,7 @@ public class IP {
 //        this.ip = "172.20.10.2";
 //    }
 public IP() {
-    this.ip = "10.0.2.2";
+    this.ip = "172.27.224.1";
 }
     public IP(String ip) {
         this.ip = ip;
