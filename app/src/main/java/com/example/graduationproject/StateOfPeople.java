@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -83,6 +84,16 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حالة الجسر");
 
+        TextView datetxt  =findViewById(R.id.date);
+
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+
+        simpleDateFormat = new SimpleDateFormat("E ، dd LLLL yyyy");
+        dateTime = simpleDateFormat.format(calendar.getTime()).toString();
+        datetxt.setText(dateTime);
 
         myRow1.setTitle("معبر الكرامة (استراحة أريحا)");
         myRow1.setDescription("عدد المسافرين التقريبي حالياً : 400 مسافر");
@@ -106,7 +117,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         timelineRowsList.add(myRow2);
 
 
-        myRow3.setTitle("جسر الملك حسين (جسر ألنبي)");
+        myRow3.setTitle("جسر الملك حسين");
         myRow3.setDescription("عدد المسافرين التقريبي حالياً : 80 مسافر");
         myRow3.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.yellow));
         myRow3.setImageSize(30);

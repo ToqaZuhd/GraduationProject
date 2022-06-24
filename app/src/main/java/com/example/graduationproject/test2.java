@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -47,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import android.text.format.DateFormat;
 
 public class test2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
@@ -72,6 +74,48 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test2);
+        TextView datetxt  =findViewById(R.id.date);
+
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+
+        simpleDateFormat = new SimpleDateFormat("E ، dd LLLL yyyy");
+        dateTime = simpleDateFormat.format(calendar.getTime()).toString();
+        datetxt.setText(dateTime);
+
+        
+        myRow1.setTitle("معبر الكرامة (استراحة أريحا)");
+        myRow1.setDescription("عدد المسافرين التقريبي حالياً : 400 مسافر");
+        myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.black));
+        myRow1.setImageSize(30);
+        myRow1.setBellowLineSize(22);
+        myRow1.setBellowLineColor(Color.argb(178, 178, 178, 178));
+        myRow1.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow1.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow1);
+
+
+        myRow2.setTitle("جسر اليهود");
+        myRow2.setDescription("عدد المسافرين التقريبي حالياً : 250 مسافر");
+        myRow2.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.orange));
+        myRow2.setImageSize(30);
+        myRow2.setBellowLineColor(Color.argb(178, 178, 178, 178));
+        myRow2.setBellowLineSize(22);
+        myRow2.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow2.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow2);
+
+
+        myRow3.setTitle("جسر الملك حسين");
+        myRow3.setDescription("عدد المسافرين التقريبي حالياً : 80 مسافر");
+        myRow3.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.yellow));
+        myRow3.setImageSize(30);
+        myRow3.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow3.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow3);
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حالة الجسر");
@@ -121,32 +165,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         myRow3.setDescriptionColor(Color.argb(255, 24, 50, 93));
         timelineRowsList.add(myRow3);*/
 
-        myRow1.setImageSize(30);
-        myRow1.setBellowLineSize(22);
-        myRow1.setBellowLineColor(Color.argb(178, 178, 178, 178));
-        myRow1.setTitleColor(Color.argb(255, 24, 50, 93));
-        myRow1.setDescriptionColor(Color.argb(255, 24, 50, 93));
-        timelineRowsList.add(myRow1);
 
-        myRow2.setImageSize(30);
-        myRow2.setBellowLineColor(Color.argb(178, 178, 178, 178));
-        myRow2.setBellowLineSize(22);
-        myRow2.setTitleColor(Color.argb(255, 24, 50, 93));
-        myRow2.setDescriptionColor(Color.argb(255, 24, 50, 93));
-        timelineRowsList.add(myRow2);
-
-
-        myRow3.setImageSize(30);
-        myRow3.setTitleColor(Color.argb(255, 24, 50, 93));
-        myRow3.setDescriptionColor(Color.argb(255, 24, 50, 93));
-        timelineRowsList.add(myRow3);
-
-
-        locationRequest =  LocationRequest.create();
-        locationRequest.setInterval(300 * 1000);
-        locationRequest.setFastestInterval(50 * 1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        updateGPS();
 
 
     }
