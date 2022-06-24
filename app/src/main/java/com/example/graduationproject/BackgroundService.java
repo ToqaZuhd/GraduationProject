@@ -50,6 +50,8 @@ public class BackgroundService extends Service {
     SharedPreferences preferences;
     private int userID;
 
+    IP ip = new IP();
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -199,7 +201,7 @@ public class BackgroundService extends Service {
         String formattedDate = df.format(c.getTime());
         String EnteredTime = formattedDate ;
 
-        String url = "http://192.168.1.143/GraduationProject/AddEnteredTime.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/AddEnteredTime.php";
         RequestQueue queue = Volley.newRequestQueue(BackgroundService.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
