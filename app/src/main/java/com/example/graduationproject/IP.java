@@ -4,14 +4,14 @@ public class IP {
     private String ip ;
 
 //    public IP() {
-//        this.ip = "172.20.10.2";
+//        this.ip = "192.168.1.100";
 //    }
 public IP() {
     this.ip = "172.27.224.1";
 }
-    public IP(String ip) {
-        this.ip = ip;
-    }
+//    public IP(String ip) {
+//        this.ip = ip;
+//    }
 
 
     public String getIp() {

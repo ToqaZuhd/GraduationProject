@@ -110,6 +110,11 @@ public class StateOfPeopleGuest extends AppCompatActivity implements NavigationV
 
 
 
+
+
+
+
+
         float crisisPercentage = (float) 5.2;
         if (crisisPercentage <6) {
             addRow("8 AM", Color.RED );

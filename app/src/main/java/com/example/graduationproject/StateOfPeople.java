@@ -67,7 +67,11 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
     LocationRequest locationRequest;
 
     SharedPreferences preferences;
+    IP ip = new IP ();
     private int userID;
+    TimelineRow myRow1 = new TimelineRow(1);
+    TimelineRow myRow2 = new TimelineRow(2);
+    TimelineRow myRow3 = new TimelineRow(3);
 
     int counterEnteredJericho = 1, counterEnteredJewsBorder = 1, counterEnteredJordan = 1;
 
@@ -78,6 +82,38 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("حالة الجسر");
+
+
+        myRow1.setTitle("معبر الكرامة (استراحة أريحا)");
+        myRow1.setDescription("عدد المسافرين التقريبي حالياً : 400 مسافر");
+        myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.black));
+        myRow1.setImageSize(30);
+        myRow1.setBellowLineSize(22);
+        myRow1.setBellowLineColor(Color.argb(178, 178, 178, 178));
+        myRow1.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow1.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow1);
+
+
+        myRow2.setTitle("جسر اليهود");
+        myRow2.setDescription("عدد المسافرين التقريبي حالياً : 250 مسافر");
+        myRow2.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.orange));
+        myRow2.setImageSize(30);
+        myRow2.setBellowLineColor(Color.argb(178, 178, 178, 178));
+        myRow2.setBellowLineSize(22);
+        myRow2.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow2.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow2);
+
+
+        myRow3.setTitle("جسر الملك حسين (جسر ألنبي)");
+        myRow3.setDescription("عدد المسافرين التقريبي حالياً : 80 مسافر");
+        myRow3.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.yellow));
+        myRow3.setImageSize(30);
+        myRow3.setTitleColor(Color.argb(255, 24, 50, 93));
+        myRow3.setDescriptionColor(Color.argb(255, 24, 50, 93));
+        timelineRowsList.add(myRow3);
+
 
 
 
@@ -108,6 +144,8 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.news:
+                        startActivity(new Intent(getApplicationContext(),postNews.class));
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext(),profile.class));
@@ -251,7 +289,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
             addEnteredTime(idUser, address);
             Toast.makeText(StateOfPeople.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
         }
-       // populateAllData(a);
+        populateAllData("jericho rest");
 
     }
 
@@ -264,7 +302,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
         String formattedDate = df.format(c.getTime());
         String EnteredTime = formattedDate ;
 
-        String url = "http://192.168.1.143/GraduationProject/AddEnteredTime.php";
+        String url = "http://"+ip.getIp().trim()+"/GraduationProject/AddEnteredTime.php";
         RequestQueue queue = Volley.newRequestQueue(StateOfPeople.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -323,7 +361,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
 
     public void populateAllData(String coordinate){
-        String BASE_URL = "http://192.168.1.143/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
 
         RequestQueue queue = Volley.newRequestQueue(StateOfPeople.this);
 
@@ -336,7 +374,7 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
                             JSONArray DataList=new JSONArray(response);
                             for(int i=0;i<DataList.length();i++){
                                 JSONObject jsonObject= DataList.getJSONObject(i);
-                                String date = jsonObject.getString("date");
+                                String date = jsonObject.getString("enteredTime");
 
                                 Calendar c = Calendar.getInstance();
                                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -353,16 +391,21 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
                             }
 
+                            System.out.println(numOfPeople);
                             if (numOfPeople<50){
+                                myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.blue));
 
                             }
                             else if (numOfPeople>50 && numOfPeople<=100){
+                                myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.yellow));
 
                             }
                             else if (numOfPeople>100 && numOfPeople<=300){
+                                myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.orange));
 
                             }
                             else if (numOfPeople>300){
+                                myRow1.setImage(BitmapFactory.decodeResource(getResources(),R.drawable.black));
 
                             }
 
@@ -384,14 +427,14 @@ public class StateOfPeople extends AppCompatActivity implements NavigationView.O
 
 
 
-    public void addRow (String Title, int color){
-        TimelineRow myRow = new TimelineRow(2);
-        myRow.setTitle(Title);
-        myRow.setBellowLineColor(color);
-        myRow.setBellowLineSize(6);
-        timelineRowsList.add(myRow);
-
-    }
+//    public void addRow (String Title, int color){
+//        TimelineRow myRow = new TimelineRow(2);
+//        myRow.setTitle(Title);
+//        myRow.setBellowLineColor(color);
+//        myRow.setBellowLineSize(6);
+//        timelineRowsList.add(myRow);
+//
+//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
