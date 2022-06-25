@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void tripMapOnClickBtn(View view) {
-        Intent intent = new Intent(this, StateOfPeople.class);
+        Intent intent = new Intent(this, test2.class);
         startActivity(intent);
     }
 

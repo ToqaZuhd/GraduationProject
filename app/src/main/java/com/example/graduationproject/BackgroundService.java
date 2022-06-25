@@ -63,16 +63,20 @@ public class BackgroundService extends Service {
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         int userID=preferences.getInt("login",-1);
         super.onCreate();
-        initData();
+//        initData();
+        Location location = new Location("dummy");
+        location.setLatitude(31.860889);
+        location.setLongitude(35.478281);
+        insideRangeOrNot(location);
     }
 
 
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId){
-        updateGPS();
-        return START_STICKY;
-    }
+//    @Override
+//    public int onStartCommand(Intent intent, int flags, int startId){
+//        updateGPS();
+//        return START_STICKY;
+//    }
 
     private void updateGPS(){
 
