@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.graduationproject.CarProvider.PostCar;
 import com.example.graduationproject.Model.user;
+import com.example.graduationproject.OpeningTimesEmployee.DaysAndTimesOpeningEmployeeActivity;
 import com.example.graduationproject.PointsCharger.chargePoints;
 
 import org.json.JSONException;
@@ -44,19 +45,22 @@ public class SignIn extends AppCompatActivity {
         if (session!=-1){
             Intent intent;
             if(role.equals("user")){
-                intent = new Intent(SignIn.this, postNews.class);
+                intent = new Intent(SignIn.this, MainActivity.class);
                 startActivity(intent);
 
             }
 
-            if(role.equals("car_provider")){
+            else if(role.equals("car_provider")){
                 intent = new Intent(SignIn.this, PostCar.class);
                 startActivity(intent);
 
             }
-//            else{
-//                intent = new Intent(SignIn.this, EmployeeResRoom.class);
-//            }
+
+           else if (role.equals("points_charger")){
+                intent = new Intent(SignIn.this, chargePoints.class);
+                startActivity(intent);
+
+            }
         }
 
         SharedPreferences remember = getSharedPreferences("checkBox", MODE_PRIVATE);
@@ -152,10 +156,12 @@ public class SignIn extends AppCompatActivity {
                             startActivity(intent);
 
                         }
+                        else if (role.equals("authority_employee")){
+                            intent = new Intent(SignIn.this, DaysAndTimesOpeningEmployeeActivity.class);
+                            startActivity(intent);
 
-//                        else {
-//                            intent = new Intent(SignIn.this, EmployeeResRoom.class);
-//                        }
+                        }
+
 
 
                     }

@@ -71,8 +71,6 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
     int userID;
     IP ip = new IP ();
 
-    int counterEnteredJericho = 1, counterEnteredJewsBorder = 1, counterEnteredJordan = 1;
-
     String address = "";
 
     TimelineRow myRow1 = new TimelineRow(0);
@@ -90,10 +88,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                     @Override
                     public void onRefresh() {
 
-                        populateAllData("jericho rest");
-                        populateAllData("jews border");
-                        populateAllData("jordan border");
-
+                        populateAllData();
                         swipeRefreshLayout.setRefreshing(false);
 
                     }
@@ -156,15 +151,14 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
 //        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 //        updateGPS();
 
-        Location location = new Location("dummy");
-        location.setLatitude(31.86421292082426);
-        location.setLongitude(35.49231925108679);
-        insideRangeOrNot(location);
+//        Location location = new Location("dummy");
+//        location.setLatitude(31.86421292082426);
+//        location.setLongitude(35.49231925108679);
+//        insideRangeOrNot(location);
 
 //        System.out.println(location);
-        populateAllData("jericho rest");
-        populateAllData("jews border");
-        populateAllData("jordan border");
+        populateAllData();
+
 
 
 
@@ -175,168 +169,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
 
     }
 
-    private void insideRangeOrNot(Location location) {
 
-        Toast.makeText(test2.this,  "obwein" + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
-        //rawabi 32.00810975566043, 35.18731940607394
-        //abwein 32.031158019007904, 35.200929130217354
-        String idUser = String.valueOf(userID);
-
-        //consider the radius value = 1 km
-        int radius = 1000;
-
-
-        //use the sld to calculate the distance between the exact location of Jericho rest (center) and the exact location of the user
-        //to check if the user is inside or outside the circle (range)
-        Location jerichoArea = new Location("");
-        jerichoArea.setLatitude(31.86421519892245);
-        jerichoArea.setLongitude(35.49228173581841);
-        float jerichoDist = jerichoArea.distanceTo(location);
-        System.out.println(jerichoDist);
-
-        //31.86421519892245, 35.49228173581841
-        Location jewsArea = new Location("");
-        jewsArea.setLatitude(31.869016092998148);
-        jewsArea.setLongitude(35.53160625666317);
-        float jewsDist = jewsArea.distanceTo(location);
-
-        Location jordanArea = new Location("");
-        jordanArea.setLatitude(31.889659788142747);
-        jordanArea.setLongitude(35.578367695985555);
-        float jordanDist = jordanArea.distanceTo(location);
-
-        //inside the range then the entered time in the database will be updated
-        if (jerichoDist <= radius) {
-
-            String address = "jericho rest";
-            if(counterEnteredJericho == 1){
-                addEnteredTime(idUser, address);
-                counterEnteredJericho ++;
-            }
-            Toast.makeText(test2.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
-
-        }
-        else if (jerichoDist > radius && location.getLatitude() > jerichoArea.getLatitude() && location.getLatitude() < jewsArea.getLatitude()){
-            String address = "betweenJerichoJews";
-            addEnteredTime(idUser, address);
-        }
-        else if(jewsDist <= radius){
-
-            String address = "jews border";
-            if(counterEnteredJewsBorder == 1){
-                addEnteredTime(idUser, address);
-                counterEnteredJewsBorder ++;
-            }
-            Toast.makeText(test2.this, address + jewsDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
-
-        }
-        else if (jewsDist > radius && location.getLatitude() > jewsArea.getLatitude() && location.getLatitude() < jordanArea.getLatitude()){
-            String address = "betweenJewsJordan";
-            addEnteredTime(idUser, address);
-        }
-        //between jews and jordan, coordinate betweenJewsJordan
-
-        else if(jordanDist <= radius){
-
-            String address = "jordan border";
-            if(counterEnteredJordan == 1){
-                addEnteredTime(idUser, address);
-                counterEnteredJordan ++;
-            }
-
-
-            Toast.makeText(test2.this, address + jordanDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
-
-        }
-
-        else if (jordanDist > radius && jordanArea.getLatitude() < location.getLatitude()){
-            String address = "outside jordan";
-            addEnteredTime(idUser, address);
-            Toast.makeText(test2.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
-        }
-        // populateAllData(a);
-
-    }
-    private void addEnteredTime(String IDNum,String coordinate){
-
-        Calendar c = Calendar.getInstance();
-
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate = df.format(c.getTime());
-        String EnteredTime = formattedDate ;
-        Date currentTime = Calendar.getInstance().getTime();
-        System.out.println(currentTime);
-
-        String url = "http://"+ip.getIp().trim()+"/GraduationProject/AddEnteredTime.php";
-        RequestQueue queue = Volley.newRequestQueue(test2.this);
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("TAG", "RESPONSE IS " + response);
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    if (jsonObject.getString("error").equals("false")) {
-                        Toast.makeText(test2.this,
-                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-
-                    }} catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // method to handle errors.
-                Toast.makeText(test2.this,
-                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            public String getBodyContentType() {
-                // as we are passing data in the form of url encoded
-                // so we are passing the content type below
-                return "application/x-www-form-urlencoded; charset=UTF-8";
-            }
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError
-            {
-
-                // below line we are creating a map for storing
-                // our values in key and value pair.
-                Map<String, String> params = new HashMap<String, String>();
-
-                // on below line we are passing our
-                // key and value pair to our parameters.
-                params.put("coordinate", coordinate);
-                params.put("IDNum", IDNum);
-                params.put("time", EnteredTime);
-
-                // at last we are returning our params.
-                return params;
-            }
-        };
-        // below line is to make
-        // a json object request.
-        queue.add(request);
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(requestCode == 99){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                updateGPS();
-            }
-            else{
-                Toast.makeText(this, "this app requires permissions to work properly", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
 
     private void updateGPS(){
         // the exact location of the user
@@ -347,9 +180,8 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                     new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
-                            populateAllData("jericho rest");
-                            populateAllData("jews border");
-                            populateAllData("jordan border");
+                            populateAllData();
+
                            // insideRangeOrNot(location);
                         }
                     });
@@ -403,8 +235,8 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
     }
 
 
-    public void populateAllData(String coordinate){
-        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPeriodTime.php?coordinate="+coordinate;
+    public void populateAllData(){
+        String BASE_URL = "http://"+ip.getIp().trim()+"/GraduationProject/getPeriodTime.php";
 
         RequestQueue queue = Volley.newRequestQueue(test2.this);
 
@@ -413,11 +245,20 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                     @Override
                     public void onResponse(String response) {
                         try {
-                            int numOfPeople = 0;
+                            int numOfPeople_Jericho = 0;
+                            int numOfPeople_Jews = 0;
+                            int numOfPeople_Jordan = 0;
+
+                            int total_Jericho = 0;
+                            int total_Jews = 0;
+                            int total_Jordan = 0;
+                            String rest = "";
+
                             JSONArray DataList = new JSONArray(response);
                             for (int i = 0; i < DataList.length(); i++) {
                                 JSONObject jsonObject = DataList.getJSONObject(i);
                                 String date = jsonObject.getString("enteredTime");
+                                rest = jsonObject.getString("coordinate");
                                 System.out.println("dd"+date);
 
                                 Calendar c = Calendar.getInstance();
@@ -439,88 +280,98 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
                                 System.out.println("minutes"+minutes);
 
 
-                                if (minutes > 60)
-                                    numOfPeople++;
+                                if(rest.equals("jericho rest")){
+                                    total_Jericho++;
+                                    if (minutes > 45)
+                                        numOfPeople_Jericho++;
+                                }
+
+                                if(rest.equals("jews border")){
+                                    total_Jews++;
+                                    if (minutes > 45)
+                                        numOfPeople_Jews++;
+                                }
+
+                                if(rest.equals("jordan border")){
+                                    total_Jordan++;
+                                    if (minutes > 45)
+                                        numOfPeople_Jordan++;
+                                }
 
                             }
 
-                            System.out.println("number of people"+numOfPeople);
+                            System.out.println("number of people"+numOfPeople_Jericho);
 
 
 
                             myListView.setAdapter(myAdapter);
 
-                            if (coordinate.trim().equals("jericho rest")) {
-
-                                if (numOfPeople <= 50) {
+                                if (numOfPeople_Jericho <= 50) {
                                     myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
-                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jericho +" مسافر ");
 
 
-                                } else if (numOfPeople > 50 && numOfPeople <= 100) {
+                                } else if (numOfPeople_Jericho > 50 && numOfPeople_Jericho <= 100) {
                                     myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
-                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jericho +" مسافر ");
 
 
-                                } else if (numOfPeople > 100 && numOfPeople <= 300) {
+                                } else if (numOfPeople_Jericho > 100 && numOfPeople_Jericho <= 300) {
                                     myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
-                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jericho +" مسافر ");
 
 
-                                } else if (numOfPeople > 300) {
+                                } else if (numOfPeople_Jericho > 300) {
                                     myRow1.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
-                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow1.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jericho +" مسافر ");
 
                                 }
-                            }
-                            else if (coordinate.trim().equals("jews border")) {
-                                if (numOfPeople <= 50) {
+
+                                if (numOfPeople_Jews <= 50) {
 
                                     myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
-                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jews +" مسافر ");
 
 
-                                } else if (numOfPeople > 50 && numOfPeople <= 100) {
-                                    System.out.println("salmaaaaa2" + numOfPeople);
+                                } else if (numOfPeople_Jews > 50 && numOfPeople_Jews <= 100) {
+                                    System.out.println("salmaaaaa2" + numOfPeople_Jericho);
                                     myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
-                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jews +" مسافر ");
 
 
-                                } else if (numOfPeople > 100 && numOfPeople <= 300) {
+                                } else if (numOfPeople_Jews > 100 && numOfPeople_Jews <= 300) {
                                     myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
-                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jews +" مسافر ");
 
 
-                                } else if (numOfPeople > 300) {
+                                } else if (numOfPeople_Jews > 300) {
                                     myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
-                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow2.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jews +" مسافر ");
 
 
                                 }
-                            }
 
-                            else if (coordinate.equals("jordan border")) {
-                                if (numOfPeople <= 50) {
+                                if (numOfPeople_Jordan <= 50) {
 
                                     myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.blue));
-                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jordan +" مسافر ");
 
-                                } else if (numOfPeople > 50 && numOfPeople <= 100) {
+                                } else if (numOfPeople_Jordan > 50 && numOfPeople_Jordan <= 100) {
                                     myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.yellow));
-                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jordan +" مسافر ");
 
 
-                                } else if (numOfPeople > 100 && numOfPeople <= 300) {
+                                } else if (numOfPeople_Jordan > 100 && numOfPeople_Jordan <= 300) {
                                     myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.orange));
-                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jordan +" مسافر ");
 
-                                } else if (numOfPeople > 300) {
+                                } else if (numOfPeople_Jordan > 300) {
                                     myRow3.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.black));
-                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ DataList.length() +" مسافر ");
+                                    myRow3.setDescription(" عدد المسافرين التقريبي حالياً : "+ total_Jordan +" مسافر ");
 
 
                                 }
-                            }
+
 
                             } catch(JSONException | ParseException e){
                                 e.printStackTrace();
