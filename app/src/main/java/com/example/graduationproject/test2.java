@@ -96,6 +96,7 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         );
 
 
+
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         userID=preferences.getInt("login",-1);
         System.out.println(userID);
