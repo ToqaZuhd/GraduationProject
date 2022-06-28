@@ -63,20 +63,21 @@ public class BackgroundService extends Service {
         preferences=getSharedPreferences("session",MODE_PRIVATE);
         int userID=preferences.getInt("login",-1);
         super.onCreate();
-//        initData();
-        Location location = new Location("dummy");
-        location.setLatitude(31.860889);
-        location.setLongitude(35.478281);
-        insideRangeOrNot(location);
+        initData();
+
+//        Location location = new Location("dummy");
+//        location.setLatitude(31.860889);
+//        location.setLongitude(35.478281);
+//        insideRangeOrNot(location);
     }
 
 
 
-//    @Override
-//    public int onStartCommand(Intent intent, int flags, int startId){
-//        updateGPS();
-//        return START_STICKY;
-//    }
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId){
+        updateGPS();
+        return START_STICKY;
+    }
 
     private void updateGPS(){
 
@@ -96,27 +97,28 @@ public class BackgroundService extends Service {
         }
         fusedLocationProviderClient.requestLocationUpdates(this.locationRequest,
                 this.locationCallback, Looper.myLooper());
+    }
+    /*else{
+        //permission not granted, we will ask for it
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 99);
         }
-        /*else{
-            //permission not granted, we will ask for it
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 99);
-            }
-        }*/
-        private LocationCallback locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                Location currentLocation = locationResult.getLastLocation();
-                Log.d("Locations", currentLocation.getLatitude() + "," + currentLocation.getLongitude());
-                insideRangeOrNot(currentLocation);
-                //Share/Publish Location
-            }
-        };
+    }*/
+    private LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            super.onLocationResult(locationResult);
+            Location currentLocation = locationResult.getLastLocation();
+            Log.d("Locations", currentLocation.getLatitude() + "," + currentLocation.getLongitude());
+            insideRangeOrNot(currentLocation);
+            //Share/Publish Location
+        }
+    };
 
     private void insideRangeOrNot(Location location) {
 
-        Toast.makeText(BackgroundService.this,  "obwein" + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(BackgroundService.this,  "obwein" + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+        System.out.println("waitinggg");
         //rawabi 32.00810975566043, 35.18731940607394
         //abwein 32.031158019007904, 35.200929130217354
         String idUser = String.valueOf(userID);
@@ -151,7 +153,7 @@ public class BackgroundService extends Service {
                 addEnteredTime(idUser, address);
                 counterEnteredJericho ++;
             }
-            Toast.makeText(BackgroundService.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(BackgroundService.this, address + jerichoDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
         else if (jerichoDist > radius && location.getLatitude() > jerichoArea.getLatitude() && location.getLatitude() < jewsArea.getLatitude()){
@@ -165,7 +167,7 @@ public class BackgroundService extends Service {
                 addEnteredTime(idUser, address);
                 counterEnteredJewsBorder ++;
             }
-            Toast.makeText(BackgroundService.this, address + jewsDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(BackgroundService.this, address + jewsDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
         else if (jewsDist > radius && location.getLatitude() > jewsArea.getLatitude() && location.getLatitude() < jordanArea.getLatitude()){
@@ -183,14 +185,14 @@ public class BackgroundService extends Service {
             }
 
 
-            Toast.makeText(BackgroundService.this, address + jordanDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(BackgroundService.this, address + jordanDist + "lon = " + location.getLongitude() + "lat = " + location.getLatitude(), Toast.LENGTH_LONG).show();
 
         }
 
         else if (jordanDist > radius && jordanArea.getLatitude() < location.getLatitude()){
-            String address = "outside jordan";
+            String address = "outside";
             addEnteredTime(idUser, address);
-            Toast.makeText(BackgroundService.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
+//            Toast.makeText(BackgroundService.this, "outside" + jerichoDist, Toast.LENGTH_LONG).show();
         }
         // populateAllData(a);
 
@@ -214,8 +216,8 @@ public class BackgroundService extends Service {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("error").equals("false")) {
-                        Toast.makeText(BackgroundService.this,
-                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(BackgroundService.this,
+//                                jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
 
 
                     }} catch (JSONException e) {
@@ -228,8 +230,8 @@ public class BackgroundService extends Service {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // method to handle errors.
-                Toast.makeText(BackgroundService.this,
-                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(BackgroundService.this,
+//                        "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override

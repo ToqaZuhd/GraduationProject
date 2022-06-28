@@ -146,11 +146,12 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
         nav();
 
 
-//        locationRequest =  LocationRequest.create();
-//        locationRequest.setInterval(300 * 1000);
-//        locationRequest.setFastestInterval(50 * 1000);
-//        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-//        updateGPS();
+        locationRequest =  LocationRequest.create();
+        locationRequest.setInterval(300 * 1000);
+        locationRequest.setFastestInterval(50 * 1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        updateGPS();
+
 
 //        Location location = new Location("dummy");
 //        location.setLatitude(31.86421292082426);
@@ -158,8 +159,9 @@ public class test2 extends AppCompatActivity implements NavigationView.OnNavigat
 //        insideRangeOrNot(location);
 
 //        System.out.println(location);
-        populateAllData();
+//        populateAllData();
 
+//        updateGPS();
 
 
 

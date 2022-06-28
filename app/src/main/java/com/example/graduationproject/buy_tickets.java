@@ -170,7 +170,7 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
 
     public void updateScore() {
-        String url ="http://"+ip.getIp().trim()+"/GraduationProject/updateScore.php";
+        String url ="http://"+ip.getIp().trim()+"/GraduationProject/decreaseScore.php";
         RequestQueue queue = Volley.newRequestQueue(buy_tickets.this);
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -205,9 +205,10 @@ public class buy_tickets extends AppCompatActivity implements NavigationView.OnN
 
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("id", String.valueOf(userID));
+                params.put("userId", userID+"");
 
                 int newScore = scoreNum-total+rewardPoints();
+
 
                 params.put("score", newScore +"");
                 return params;
